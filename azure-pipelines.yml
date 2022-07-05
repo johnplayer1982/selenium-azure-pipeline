@@ -18,5 +18,6 @@ steps:
     connectedServiceName: 'CBT'
 
 - script: |
+    pip install -r requirements.txt
     python test_selenium.py
   displayName: 'Run a multi-line script'
