@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import os, requests
-import breadcrumbs, accordion_carousel, article_feedback, blog_post, callouts
+import cookies, breadcrumbs, accordion_carousel, article_feedback, blog_post, callouts, chat
 
 username = os.getenv("CBT_USERNAME")
 authkey = os.getenv("CBT_AUTHKEY")
@@ -25,11 +25,13 @@ driver = webdriver.Remote(
 
 baseUrl = "https://test.moneyhelper.org.uk"
 tests = {
+    "Cookies" : cookies,
     "Breadcrumbs" : breadcrumbs,
     "Accordion Carousel" : accordion_carousel,
     "Article Feedback" : article_feedback,
-    # "Blog Post" : blog_post, # Failing as blog in breadcrumb has incorrect title
-    "Callouts" : callouts,
+    # "Blog Post" : blog_post, # Need test. release
+    "Callouts" : callouts, # Need test. release
+    #"Chat" : chat # Need test. release
 }
 
 try:

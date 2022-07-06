@@ -12,7 +12,7 @@ def runTest(baseUrl, driver):
     for post in blogposts:
 
         iterationUrl = "{baseUrl}{post}".format(baseUrl=baseUrl, post=post)
-        driver.maximize_window()
+        resize.resizeDesktop(driver)
         driver.get(iterationUrl)
         print('\nVisiting: {iterationUrl}'.format(iterationUrl=iterationUrl))
 
@@ -74,7 +74,7 @@ def runTest(baseUrl, driver):
         print('- Desktop Hero image size ok')
         
         # Check image resizes with screen
-        driver.set_window_size(450, 900)
+        resize.resizeMobile(driver)
         print('- Resized window to mobile')
 
         mobileHeroImage = driver.find_element(By.CSS_SELECTOR, '.cmp-hero-image')
