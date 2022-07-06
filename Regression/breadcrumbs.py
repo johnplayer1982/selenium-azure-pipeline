@@ -36,7 +36,8 @@ def runTest(baseUrl, driver):
             homeLinkText = "Home"
         else:
             homeLinkText = "Hafan"
-        assert desktopBreadcrumbItems[0].text == homeLinkText
+        breadcrumb_text = desktopBreadcrumbItems[0].find_element(By.CSS_SELECTOR, 'a.cmp-breadcrumb__list-item-link > span').text
+        assert breadcrumb_text == homeLinkText
         print('- 1st link in breadcrumb correct "{homeLinkText}"'.format(homeLinkText=homeLinkText))
         
         # Confirm height of desktop breadcrumb
