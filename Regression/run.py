@@ -25,8 +25,8 @@ tests = {
 }
 
 try:
-    for test in tests.items():
-        test.runTest(baseUrl, driver)
+    for key, value in tests.items():
+        value.runTest(baseUrl, driver)
     test_result = 'pass'
 except AssertionError as e:
     test_result = 'fail'
