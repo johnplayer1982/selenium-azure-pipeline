@@ -19,5 +19,6 @@ steps:
 
 - script: |
     pip install -r requirements.txt
-    python test_selenium.py
+    cd Regression
+    python test.py
   displayName: 'Run a multi-line script'
