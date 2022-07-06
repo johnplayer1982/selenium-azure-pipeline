@@ -133,3 +133,4 @@ def runTest(baseUrl, driver):
         print(' + Icon is green tick')
         assert item_content.get_attribute('style') == "display: none;"
         print(' + Item content not visible')
+        time.sleep(1)
