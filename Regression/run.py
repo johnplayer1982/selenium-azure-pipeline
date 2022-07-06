@@ -17,5 +17,11 @@ driver = webdriver.Remote(
 
 baseUrl = "https://test.moneyhelper.org.uk"
 
-breadcrumbs.runTest(baseUrl)
+try:
+    breadcrumbs.runTest(baseUrl)
+    test_result = 'pass'
+except AssertionError as e:
+    test_result = 'fail'
+    raise
+
 driver.quit()
