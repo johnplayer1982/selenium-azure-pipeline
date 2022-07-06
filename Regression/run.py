@@ -6,7 +6,6 @@ import os, breadcrumbs
 username = os.getenv("CBT_USERNAME")
 authkey = os.getenv("CBT_AUTHKEY")
 
-
 caps = {
  'platform': 'Windows',
  'browserName': 'Chrome',
