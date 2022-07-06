@@ -3,11 +3,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import os, requests, breadcrumbs
 
-# username = os.getenv("CBT_USERNAME")
-# authkey = os.getenv("CBT_AUTHKEY")
-
-username = "john.player@maps.org.uk"
-authkey = "u63646a5c5ba009c"
+username = os.getenv("CBT_USERNAME")
+authkey = os.getenv("CBT_AUTHKEY")
 
 api_session = requests.Session()
 api_session.auth = (username, authkey)
