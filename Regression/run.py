@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-import os, requests, breadcrumbs, accordion_carousel
+import os, requests, breadcrumbs, accordion_carousel, article_feedback
 
 username = os.getenv("CBT_USERNAME")
 authkey = os.getenv("CBT_AUTHKEY")
@@ -26,6 +26,7 @@ baseUrl = "https://test.moneyhelper.org.uk"
 tests = {
     "Breadcrumbs" : breadcrumbs,
     "Accordion Carousel" : accordion_carousel,
+    "Article Feedback" : article_feedback,
 }
 
 try:
