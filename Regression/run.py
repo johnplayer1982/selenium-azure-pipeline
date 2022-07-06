@@ -20,9 +20,13 @@ driver = webdriver.Remote(
     desired_capabilities=caps)
 
 baseUrl = "https://test.moneyhelper.org.uk"
+tests = {
+    "Breadcrumbs" : breadcrumbs,
+}
 
 try:
-    breadcrumbs.runTest(baseUrl)
+    for test in tests.items():
+        test.runTest(baseUrl, driver)
     test_result = 'pass'
 except AssertionError as e:
     test_result = 'fail'
