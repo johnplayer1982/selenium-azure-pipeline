@@ -11,7 +11,6 @@ api_session.auth = (username, authkey)
 test_result = None
 release = "Azure Selenium Staging"
 
-
 caps = {
     'name': '{}'.format(release),
     'build': '1.8.4',

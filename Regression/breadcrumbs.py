@@ -5,6 +5,7 @@ def runTest(baseUrl, driver):
 
     dismisscookie = SourceFileLoader('getcookiefile', '../Lib/dismisscookie.py').load_module()
     articlelist = SourceFileLoader('getarticlelist', '../Lib/article_list.py').load_module()
+    resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
 
     testArticle = "{baseUrl}/en/jp-test/how-to-choose-the-right-bank-account".format(baseUrl=baseUrl)
     driver.get(testArticle)
@@ -17,7 +18,7 @@ def runTest(baseUrl, driver):
         expectedHeight = 61
         
         # Desktop
-        driver.maximize_window()
+        resize.resizeDesktop(driver)
 
         # Finding Breadcrumbs
         desktopBreadcrumbs = driver.find_element(By.CSS_SELECTOR, '.breadcrumb')
@@ -45,7 +46,7 @@ def runTest(baseUrl, driver):
         print('- Desktop breadcrumb correct height {actualHeight}px'.format(actualHeight=actualHeight))
 
         # Switch to mobile
-        driver.set_window_size(450, 667)
+        resize.resizeMobile(driver)
         print('- Switching to mobile')
         expectedHeight = 58 # 55px breadcrumb + 3px border
         mobileBreadcrumb = driver.find_element(By.CSS_SELECTOR, '.cmp-breadcrumb__list--mobile')
