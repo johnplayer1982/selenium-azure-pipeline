@@ -20,5 +20,5 @@ steps:
 - script: |
     pip install -r requirements.txt
     cd Regression
-    python test.py
+    python run.py
   displayName: 'Run a multi-line script'

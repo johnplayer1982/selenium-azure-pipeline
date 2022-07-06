@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-import os, time
+import os, breadcrumbs
 
 username = os.getenv("CBT_USERNAME")
 authkey = os.getenv("CBT_AUTHKEY")
@@ -16,13 +16,7 @@ driver = webdriver.Remote(
     command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
     desired_capabilities=caps)
 
+baseUrl = "https://test.moneyhelper.org.uk"
 
-
-driver.get("http://www.google.com")
-if not "Google" in driver.title:
-    raise Exception("Unable to load google page!")
-elem = driver.find_element_by_name("q")
-elem.send_keys("CrossBrowserTesting")
-elem.submit()
-print(driver.title)
+breadcrumbs.runTest()
 driver.quit()
