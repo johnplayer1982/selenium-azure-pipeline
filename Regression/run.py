@@ -3,16 +3,23 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import os, requests, breadcrumbs
 
-username = os.getenv("CBT_USERNAME")
-authkey = os.getenv("CBT_AUTHKEY")
+# username = os.getenv("CBT_USERNAME")
+# authkey = os.getenv("CBT_AUTHKEY")
+
+username = "john.player@maps.org.uk"
+authkey = "u63646a5c5ba009c"
 
 api_session = requests.Session()
 api_session.auth = (username, authkey)
 test_result = None
+release = "Azure Selenium Staging"
+
 
 caps = {
- 'platform': 'Windows',
- 'browserName': 'Chrome',
+    'name': '{}'.format(release),
+    'build': '1.8.4',
+    'platform': 'Windows',
+    'browserName': 'Chrome',
 }
 
 driver = webdriver.Remote(
