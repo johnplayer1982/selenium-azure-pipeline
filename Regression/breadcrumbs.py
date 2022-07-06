@@ -56,8 +56,7 @@ def runTest(baseUrl, driver):
         assert actualHeight == expectedHeight
         print('- Breadcrumb is expected height for mobile')
         
-        print('5082 - Incorrect redirect URLs in mobile breadcrumbs')
         breadcrumb = driver.find_element(By.CSS_SELECTOR, 'a.cmp-breadcrumb__list--mobile')
         breadcrumbHref = breadcrumb.get_attribute("href")
         assert not ".html" in breadcrumbHref or "/content/maps/moneyhelper/" in breadcrumbHref
-        print(' - Breadcrumb href does not contain .html or /content/maps/moneyhelper/ path')
+        print(' - Breadcrumb href does not contain .html or /content/maps/moneyhelper/ path (5082)')
