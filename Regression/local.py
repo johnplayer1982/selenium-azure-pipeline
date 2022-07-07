@@ -15,13 +15,13 @@ options.binary_location = r"C:\Program Files\Google\Chrome Beta\Application\chro
 driver = webdriver.Chrome(chrome_options=options, executable_path=DRIVER_BIN)
 
 tests = {
-    # "Cookies" : cookies,
-    # "Breadcrumbs" : breadcrumbs,
-    # "Accordion Carousel" : accordion_carousel,
-    # "Article Feedback" : article_feedback,
-    # "Blog Post" : blog_post,
+    "Cookies" : cookies,
+    "Breadcrumbs" : breadcrumbs,
+    "Accordion Carousel" : accordion_carousel,
+    "Article Feedback" : article_feedback,
+    "Blog Post" : blog_post,
     "Callouts" : callouts,
-    # "Chat" : chat,
+    "Chat" : chat,
 }
 
 for key, value in tests.items():
