@@ -29,9 +29,9 @@ tests = {
     "Breadcrumbs" : breadcrumbs,
     "Accordion Carousel" : accordion_carousel,
     "Article Feedback" : article_feedback,
-    # "Blog Post" : blog_post, # Need test. release
-    "Callouts" : callouts, # Need test. release
-    #"Chat" : chat # Need test. release
+    "Blog Post" : blog_post,
+    "Callouts" : callouts,
+    "Chat" : chat
 }
 
 try:
