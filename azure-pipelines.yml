@@ -9,6 +9,10 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+steps:
+- script: echo Hello, world!
+  displayName: 'Initiating scripts'
+
 - task: CBTMain@0
   inputs:
     connectedServiceName: 'CBT'
@@ -17,4 +21,4 @@ pool:
     pip install -r requirements.txt
     cd Regression
     python run.py
-  displayName: 'Running Tests'
+  displayName: 'Running tests'
