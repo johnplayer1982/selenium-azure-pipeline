@@ -9,10 +9,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - task: CBTMain@0
   inputs:
     connectedServiceName: 'CBT'
@@ -21,4 +17,4 @@ steps:
     pip install -r requirements.txt
     cd Regression
     python run.py
-  displayName: 'Run a multi-line script'
+  displayName: 'Running Tests'
