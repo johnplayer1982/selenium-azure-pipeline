@@ -4,6 +4,8 @@ from importlib.machinery import SourceFileLoader
 
 def runTest(baseUrl, driver):
     
+    resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
+
     urls = [
         "/en/everyday-money/types-of-credit/simple-guide-to-credit-cards",
         "/cy/everyday-money/types-of-credit/simple-guide-to-credit-cards"
@@ -15,6 +17,7 @@ def runTest(baseUrl, driver):
         print('\nVisiting {}'.format(iterationUrl))
         driver.get(iterationUrl)
     
+        resize.resizeDesktop(driver)
         print('- Testing dominant callout')
         dominant_callout = driver.find_element(By.CSS_SELECTOR, 'div.cmp-call-out-box--dominant-tool')
         assert dominant_callout.value_of_css_property('margin-top') == "35px"
@@ -28,7 +31,17 @@ def runTest(baseUrl, driver):
         assert dominant_callout_title.value_of_css_property('font-weight') == "700"
         assert "0, 11, 59" in dominant_callout_title.value_of_css_property('color')
         assert dominant_callout_title.value_of_css_property('line-height') == "39px"
-        print(' - Dominant callout styles ok')
+        print(' - Desktop Dominant callout styles ok')
+
+        resize.resizeMobile(driver)
+        dominant_callout = driver.find_element(By.CSS_SELECTOR, 'div.cmp-call-out-box--dominant-tool')
+        dominant_callout_title = dominant_callout_wrapper.find_element(By.CSS_SELECTOR, 'div.cmp-call-out-box__content-main-title > h3')
+        assert dominant_callout_title.value_of_css_property('font-size') == "25px"
+        assert dominant_callout_title.value_of_css_property('line-height') == "33px"
+        print(dominant_callout_title.value_of_css_property('line-height'))
+        print(' - Mobile Dominant callout styles ok')
+
+        resize.resizeDesktop(driver)
 
         print('- Testing branch callout external multi links')
         # Get all branch callouts 

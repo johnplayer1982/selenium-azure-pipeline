@@ -17,6 +17,8 @@ caps = {
     'build': '1.8.4',
     'platform': 'Windows',
     'browserName': 'Chrome',
+    'screenResolution' : '1920x1080',
+    'record_video' : 'true'
 }
 
 driver = webdriver.Remote(
