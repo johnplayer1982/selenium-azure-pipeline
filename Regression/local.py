@@ -10,12 +10,12 @@ driver = webdriver.Safari()
 
 tests = {
     "Cookies" : cookies,
-    # "Breadcrumbs" : breadcrumbs,
-    # "Accordion Carousel" : accordion_carousel,
-    # "Article Feedback" : article_feedback,
-    # "Blog Post" : blog_post,
-    # "Callouts" : callouts,
-    # "Chat" : chat,
+    "Breadcrumbs" : breadcrumbs,
+    "Accordion Carousel" : accordion_carousel,
+    "Article Feedback" : article_feedback,
+    "Blog Post" : blog_post,
+    "Callouts" : callouts,
+    "Chat" : chat,
 }
 
 for key, value in tests.items():
