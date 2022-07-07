@@ -15,14 +15,14 @@ release = "Azure Selenium Staging"
 caps = {
     'name': '{}'.format(release),
     'build': '1.8.4',
-    'platform': 'Headless',
+    'platform': 'Windows',
     'browserName': 'Chrome',
     'screenResolution' : '1920x1080',
     'record_video' : 'true'
 }
 
 driver = webdriver.Remote(
-    command_executor="http://%s:%s@hub-cloud.crossbrowsertesting.com/wd/hub"%(username, authkey),
+    command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
     desired_capabilities=caps)
 
 baseUrl = "https://test.moneyhelper.org.uk"
