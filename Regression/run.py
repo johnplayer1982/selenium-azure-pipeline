@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import os, requests
-import cookies, breadcrumbs, accordion_carousel, article_feedback, blog_post, callouts, chat
+import cookies, breadcrumbs, accordion_carousel, article_feedback, blog_post, callouts, chat, emergency_banner
 
 username = os.getenv("CBT_USERNAME")
 authkey = os.getenv("CBT_AUTHKEY")
@@ -33,7 +33,8 @@ tests = {
     "Article Feedback" : article_feedback,
     "Blog Post" : blog_post,
     "Callouts" : callouts,
-    "Chat" : chat
+    "Chat" : chat,
+    "Emergency Banner" : emergency_banner,
 }
 
 try:
