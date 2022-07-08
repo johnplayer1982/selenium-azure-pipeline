@@ -218,3 +218,15 @@ def runTest(baseUrl, driver):
     save_btn.click()
     print('- Set marketing cookies only')
     confirm_marketing_only(driver)
+
+    print('5480 - Addition of survey A/B test cookie into allow list (no release required)')
+    expected_cookie = '"abtest"'
+    expected_cookie_found = False
+    all_cookies = driver.get_cookies()
+    for cookie in all_cookies:
+        for key, value in cookie.items():
+            if isinstance(value, str):
+                if expected_cookie in value:
+                    expected_cookie_found = True
+    assert expected_cookie_found == True
+    print(' - A/B Test cookie found')

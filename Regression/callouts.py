@@ -82,3 +82,9 @@ def runTest(baseUrl, driver):
                 iterationUrl=iterationUrl
             )
             print(message)
+
+        print("5123 - All callouts should be <ASIDE>s or use aria-role='complementary'")
+        callout_selector = "div.cmp-call-out-box"
+        callouts = driver.find_elements(By.CSS_SELECTOR, callout_selector)
+        for callout in callouts:
+            assert callout.get_attribute('role') == "complementary"
