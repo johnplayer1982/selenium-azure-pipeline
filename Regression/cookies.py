@@ -175,6 +175,14 @@ def runTest(baseUrl, driver):
         assert side_menu.value_of_css_property(key) == value
     print('- Side menu container styles OK')
 
+    assert driver.find_element(By.CSS_SELECTOR, 'div#ccc-title > h2')
+    print(' + Cookie side panel title a H2')
+    assert driver.find_element(By.CSS_SELECTOR, 'div#ccc-necessary-title > h2')
+    print(' + Cookie side panel subtitle a H2')
+    optional_headers = driver.find_elements(By.CSS_SELECTOR, 'div.optional-cookie-header > h3')
+    assert len(optional_headers) == 2
+    print(' + Cookie side panel optional headings are H3s')
+
     # Cookie functionality
     # On accept, following cookies are set: _gid, _ga_GSRBL25VV8. _fbp, _ga
     accept_btn = side_menu.find_element(By.CSS_SELECTOR, 'button#ccc-recommended-settings')

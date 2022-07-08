@@ -2,7 +2,29 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import os, requests
-import cookies, breadcrumbs, accordion_carousel, article_feedback, blog_post, callouts, chat, emergency_banner
+
+import cookies
+import breadcrumbs
+import accordion_carousel
+import article_feedback
+import blog_post
+import callouts
+import chat
+import emergency_banner
+import footer_follow
+import global_card
+import header
+import home_hero
+import icon_anchor
+import images
+import subcategory_article_list
+import subcategory_page
+import local_navigation
+import navigation
+import overview_card
+import search
+import section_hero
+import seo
 
 username = os.getenv("CBT_USERNAME")
 authkey = os.getenv("CBT_AUTHKEY")
@@ -35,6 +57,20 @@ tests = {
     "Callouts" : callouts,
     "Chat" : chat,
     "Emergency Banner" : emergency_banner,
+    "Footer Follow" : footer_follow,
+    "Global Card" : global_card,
+    "Header" : header,
+    "Home Hero" : home_hero,
+    "Icon Anchor" : icon_anchor,
+    "Images" : images,
+    "Subcategory Article List" : subcategory_article_list,
+    "Subcategory Page" : subcategory_page,
+    "Local Navigation" : local_navigation,
+    "Navigation" : navigation,
+    "Overview Card" : overview_card,
+    "Search" : search,
+    "Section Hero" : section_hero,
+    "SEO" : seo,
 }
 
 try:

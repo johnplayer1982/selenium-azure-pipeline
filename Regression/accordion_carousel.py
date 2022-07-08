@@ -4,7 +4,6 @@ import time
 
 def runTest(baseUrl, driver):
     
-    dismisscookie = SourceFileLoader('getcookiefile', '../Lib/dismisscookie.py').load_module()
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
 
     accordion_carousel_page = "{}/en/money-troubles/way-forward/job-loss".format(baseUrl)
@@ -12,7 +11,6 @@ def runTest(baseUrl, driver):
     time.sleep(1)
     print(' - Visiting {}'.format(accordion_carousel_page))
     resize.resizeDesktop(driver)
-    dismisscookie.dismissCookieBanner(driver)
 
     accordion_carousels_containers = driver.find_elements(By.CSS_SELECTOR, 'div.accordioncarousel')
     # Pick 1 to test

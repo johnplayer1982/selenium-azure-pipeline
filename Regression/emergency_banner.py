@@ -14,9 +14,6 @@ def runTest(baseUrl, driver):
 
     for key, value in locale.items():
 
-        print("\nSTART OF {key} EMERGENCY BANNER TESTS".format(key=key))
-        print("======================================")
-
         # Start test in desktop view
         resize.resizeDesktop(driver)
 
@@ -27,18 +24,18 @@ def runTest(baseUrl, driver):
         time.sleep(2)
 
         # Check the emergency banner is present
-        emergencyBanner = driver.find_element_by_css_selector(".emergency-banner")
+        emergencyBanner = driver.find_element(By.CSS_SELECTOR, ".emergency-banner")
         # If it is visible then run our tests
         if emergencyBanner.size['height'] > 0:
             print("- Emergency banner found")
 
             # Check the language (using the 1st bolded text)
-            emergencyBannerText = driver.find_element_by_css_selector(".cmp-emergency-banner__message-description strong").text
+            emergencyBannerText = driver.find_element(By.CSS_SELECTOR, ".cmp-emergency-banner__message-description strong").text
             assert value in emergencyBannerText
             print("- Banner text is correct language: {text}".format(text=emergencyBannerText))
             
             # Close the banner - outside of the loop as dismissing english also dismisses welsh and vice versa
-            emergencyBannerClose = driver.find_element_by_css_selector(".cmp-emergency-banner__close.cmp-emergency-banner__actions-button")
+            emergencyBannerClose = driver.find_element(By.CSS_SELECTOR, ".cmp-emergency-banner__close.cmp-emergency-banner__actions-button")
             assert emergencyBannerClose
             emergencyBannerClose.click()
             print("- Clicking the close button")
@@ -46,7 +43,7 @@ def runTest(baseUrl, driver):
             time.sleep(1)
 
             # Confirm banner not visible
-            assert driver.find_element_by_css_selector(".cmp-emergency-banner").get_attribute("style") == "display: none;"
+            assert driver.find_element(By.CSS_SELECTOR, ".cmp-emergency-banner").get_attribute("style") == "display: none;"
             print("- Emergency banner is hidden")
 
             # Confirm cookie is set

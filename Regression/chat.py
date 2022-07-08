@@ -25,15 +25,15 @@ def runTest(baseUrl, driver):
         print("\nVisiting {iterationUrl}".format(iterationUrl=iterationUrl))
 
         # Confirm the chat opens
-        chatBtn = driver.find_element_by_css_selector(".cmp-contact__trigger")
+        chatBtn = driver.find_element(By.CSS_SELECTOR, ".cmp-contact__trigger")
         chatBtn.click()
         print("- Clicked the chat button for {key}".format(key=key))
-        chatPanel = driver.find_element_by_css_selector(".cmp-contact__content")
+        chatPanel = driver.find_element(By.CSS_SELECTOR, ".cmp-contact__content")
         assert chatPanel.is_displayed()
         print("- Chat panel is open")
         
         # Confirm clicking the overlay closes the panel
-        chatOverlay = driver.find_element_by_css_selector(".overlay")
+        chatOverlay = driver.find_element(By.CSS_SELECTOR, ".overlay")
         chatOverlay.click()
         print("- Chat panel overlay clicked")
         assert not chatPanel.is_displayed()
@@ -42,7 +42,7 @@ def runTest(baseUrl, driver):
         # Confirm close button works
         chatBtn.click()
         print("- Re-open chat panel to test close button")
-        chatClose = driver.find_element_by_css_selector(".cmp-contact__wrapper-cross")
+        chatClose = driver.find_element(By.CSS_SELECTOR, ".cmp-contact__wrapper-cross")
         chatClose.click()
         print("- Clicked webchat close button")
         assert not chatPanel.is_displayed()
@@ -51,7 +51,7 @@ def runTest(baseUrl, driver):
         # Re-open the chat menu and make sure correct language displays
         chatBtn.click()
         print("- Re-open chat panel to confirm correct language is displaying")
-        chatTitle = driver.find_element_by_css_selector(".cmp-contact__content-heading").text
+        chatTitle = driver.find_element(By.CSS_SELECTOR, ".cmp-contact__content-heading").text
         print(chatTitle, value)
         assert value in chatTitle
         print("- Chat title is in correct language ({key})".format(key=key))
@@ -65,7 +65,7 @@ def runTest(baseUrl, driver):
         
         level1item1.click()
         print("- Level 1 item 1 clicked")
-        driver.find_element_by_css_selector(previousBtnCSS).click()
+        driver.find_element(By.CSS_SELECTOR, previousBtnCSS).click()
         print("- Back to level 1")
 
         if key == "/en":
@@ -75,7 +75,7 @@ def runTest(baseUrl, driver):
 
         level1item2.click()
         print("- Level 1 item 2 clicked")
-        level2PreviousBtn = driver.find_element_by_css_selector(".cmp-contact__wrapper-previous")
+        level2PreviousBtn = driver.find_element(By.CSS_SELECTOR, ".cmp-contact__wrapper-previous")
         level2PreviousBtn.click()
         print("- Back to level 1")
 
@@ -93,31 +93,31 @@ def runTest(baseUrl, driver):
             print("- Clicked level 1 item 1")
 
             driver.find_element_by_xpath("//body/div[@id='contact-1to1']/div[@class='cmp-contact__content']/div[@class='scroll-bay']/div[@class='cmp-contact__menu aem-Grid aem-Grid--12']/div[1]/button[1]/span[1]").click()
-            driver.find_element_by_css_selector(previousBtnCSS).click()
+            driver.find_element(By.CSS_SELECTOR, previousBtnCSS).click()
             print("- Clicked level 2 item 1")
             
             driver.find_element_by_xpath("//body/div[@id='contact-1to1']/div[@class='cmp-contact__content']/div[@class='scroll-bay']/div[@class='cmp-contact__menu aem-Grid aem-Grid--12']/div[2]/button[1]/span[1]").click()
-            driver.find_element_by_css_selector(previousBtnCSS).click()
+            driver.find_element(By.CSS_SELECTOR, previousBtnCSS).click()
             print("- Clicked level 2 item 2")
 
             driver.find_element_by_xpath("//body/div[@id='contact-1to1']/div[@class='cmp-contact__content']/div[@class='scroll-bay']/div[@class='cmp-contact__menu aem-Grid aem-Grid--12']/div[3]/button[1]/span[1]").click()
-            driver.find_element_by_css_selector(previousBtnCSS).click()
+            driver.find_element(By.CSS_SELECTOR, previousBtnCSS).click()
             print("- Clicked level 2 item 3")
 
-            driver.find_element_by_css_selector(previousBtnCSS).click()
+            driver.find_element(By.CSS_SELECTOR, previousBtnCSS).click()
             print("- Going back to level 1")
 
-            driver.find_element_by_css_selector(".cmp-contact__wrapper-cross").click()
+            driver.find_element(By.CSS_SELECTOR, ".cmp-contact__wrapper-cross").click()
             print("- Closing the menu")
         else:
-            driver.find_element_by_css_selector(".cmp-contact__wrapper-cross").click()
+            driver.find_element(By.CSS_SELECTOR, ".cmp-contact__wrapper-cross").click()
             print("- Closing the menu")
 
         # Resizing to mobile
         resize.resizeMobile(driver)
 
         # Get the position of the button
-        mobileChatButton = driver.find_element_by_css_selector(".cmp-contact__trigger")
+        mobileChatButton = driver.find_element(By.CSS_SELECTOR, ".cmp-contact__trigger")
         # location returns a dictionary with the x and y position
         mobileBtnX = mobileChatButton.location['x']
         mobileBtnY = mobileChatButton.location['y']
