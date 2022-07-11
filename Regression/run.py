@@ -6,6 +6,7 @@ import os, requests
 # Vars
 username = os.getenv("CBT_USERNAME")
 authkey = os.getenv("CBT_AUTHKEY")
+
 api_session = requests.Session()
 api_session.auth = (username, authkey)
 test_result = None
@@ -150,8 +151,8 @@ release = "Azure Staging Templates - {}".format(build)
 
 caps = setCaps(
     platform='Windows', 
-    browser='Firefox', 
-    version='95'
+    browser='Chrome', 
+    version='96'
 )
 
 driver = webdriver.Remote(

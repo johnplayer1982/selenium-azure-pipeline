@@ -14,6 +14,7 @@ def runTest(baseUrl, driver):
         iterationUrl = "{baseUrl}{post}".format(baseUrl=baseUrl, post=post)
         resize.resizeDesktop(driver)
         driver.get(iterationUrl)
+        dismisscookie.dismissCookieBanner(driver)
         print('\nVisiting: {iterationUrl}'.format(iterationUrl=iterationUrl))
 
         # ===== Breadcrumbs ===== #
