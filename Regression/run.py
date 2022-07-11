@@ -63,7 +63,6 @@ tests = {
     "Local Navigation" : local_navigation,
     "Navigation" : navigation,
     "Overview Card" : overview_card,
-    "Search" : search,
     "Section Hero" : section_hero,
     "SEO" : seo,
 }
