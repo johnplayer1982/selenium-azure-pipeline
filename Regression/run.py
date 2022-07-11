@@ -22,7 +22,8 @@ def setCaps(platform, browser, version):
         'browserName': browser,
         'version' : version,
         'screenResolution' : '1920x1080',
-        'record_video' : 'true'
+        'record_video' : 'true',
+        'max_duration' : '3600'
     }
     return caps
 
