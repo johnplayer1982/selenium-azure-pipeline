@@ -7,6 +7,7 @@ def runTest(baseUrl, driver):
 
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
     searchterms = SourceFileLoader('getsearchterms', '../Lib/search_terms.py').load_module()
+    dismisscookie = SourceFileLoader('getcookiefile', '../Lib/dismisscookie.py').load_module()
     siteUrl = "{}/en/search-results.html?q=".format(baseUrl)
 
     # Start test in desktop view
@@ -14,7 +15,7 @@ def runTest(baseUrl, driver):
 
     def runSearchTest(term, lang):
 
-        # term[0] is the value in column 1 of the row
+        dismisscookie.dismissCookieBanner(driver)
         searchTerm = term
         print("\n- Running Search term test for '{term}'".format(term=searchTerm))
 
