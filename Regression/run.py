@@ -44,7 +44,11 @@ import local_navigation
 import navigation
 import overview_card
 import section_hero
-import seo
+import seperator_anchor
+import social_sharing
+import tag_selector
+import teasers
+import text
 
 caps = setCaps(
     platform='Windows', 
@@ -74,7 +78,11 @@ tests = {
     "Navigation" : navigation,
     "Overview Card" : overview_card,
     "Section Hero" : section_hero,
-    "SEO" : seo,
+    "Seperator Anchor" : seperator_anchor,
+    "Social Sharing" : social_sharing,
+    "Tag Selector" : tag_selector,
+    "Teasers" : teasers,
+    "Text" : text,
 }
 
 try:
@@ -113,10 +121,6 @@ caps = setCaps(
 driver = webdriver.Remote(
     command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
     desired_capabilities=caps)
-
-tests = {
-    "Search" : search,
-}
 
 try:
     search.runTest(baseUrl, driver)
@@ -165,6 +169,72 @@ try:
         print('Testing {}'.format(key))
         value.runTest(baseUrl, driver)
         print('End of {} test\n'.format(key))
+    test_result = 'pass'
+except AssertionError as e:
+    test_result = 'fail'
+    raise
+
+print("Done with session %s" % driver.session_id)
+driver.quit()
+# Here we make the api call to set the test's score.
+# Pass it it passes, fail if an assertion fails, unset if the test didn't finish
+if test_result is not None:
+    api_session.put('https://crossbrowsertesting.com/api/v3/selenium/' + driver.session_id,
+        data={'action':'set_score', 'score':test_result})
+
+# ----- SEO ----- #
+import seo
+
+api_session = requests.Session()
+api_session.auth = (username, authkey)
+test_result = None
+release = "Azure Staging SEO - {}".format(build)
+
+caps = setCaps(
+    platform='Windows', 
+    browser='Chrome', 
+    version='102'
+)
+
+driver = webdriver.Remote(
+    command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
+    desired_capabilities=caps)
+
+try:
+    seo.runTest(baseUrl, driver)
+    test_result = 'pass'
+except AssertionError as e:
+    test_result = 'fail'
+    raise
+
+print("Done with session %s" % driver.session_id)
+driver.quit()
+# Here we make the api call to set the test's score.
+# Pass it it passes, fail if an assertion fails, unset if the test didn't finish
+if test_result is not None:
+    api_session.put('https://crossbrowsertesting.com/api/v3/selenium/' + driver.session_id,
+        data={'action':'set_score', 'score':test_result})
+
+# ----- MISC ----- #
+import misc
+
+api_session = requests.Session()
+api_session.auth = (username, authkey)
+test_result = None
+release = "Azure Staging MISC - {}".format(build)
+
+caps = setCaps(
+    platform='Windows', 
+    browser='Chrome', 
+    version='102'
+)
+
+driver = webdriver.Remote(
+    command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
+    desired_capabilities=caps)
+
+try:
+    misc.runTest(baseUrl, driver)
     test_result = 'pass'
 except AssertionError as e:
     test_result = 'fail'
