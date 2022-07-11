@@ -48,7 +48,7 @@ import seo
 
 caps = setCaps(
     platform='Windows', 
-    browserName='Chrome', 
+    browser='Chrome', 
     version='102'
 )
 
