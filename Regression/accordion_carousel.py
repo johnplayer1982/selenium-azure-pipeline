@@ -12,6 +12,11 @@ def runTest(baseUrl, driver):
     print(' - Visiting {}'.format(accordion_carousel_page))
     resize.resizeDesktop(driver)
 
+    # Click the anchor to go to the accordion carousel
+    anchor = driver.find_element(By.CSS_SELECTOR, 'a.cmp-iconanchor-link[href="#employment-rights"]')
+    anchor.click()
+    time.sleep(0.5)
+
     accordion_carousels_containers = driver.find_elements(By.CSS_SELECTOR, 'div.accordioncarousel')
     # Pick 1 to test
     accordion_carousel_container = accordion_carousels_containers[0]
