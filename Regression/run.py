@@ -3,7 +3,30 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import os, requests
 
-# Components
+# Vars
+username = os.getenv("CBT_USERNAME")
+authkey = os.getenv("CBT_AUTHKEY")
+api_session = requests.Session()
+api_session.auth = (username, authkey)
+test_result = None
+build = "1.8.4"
+release = "Azure Staging Components - {}".format(build)
+baseUrl = "https://test.moneyhelper.org.uk"
+
+def setCaps(platform, browser, version):
+    caps = {
+        'name': '{}'.format(release),
+        'build': '{}'.format(build),
+        'platform': platform,
+        'browserName': browser,
+        'version' : version,
+        'screenResolution' : '1920x1080',
+        'record_video' : 'true'
+    }
+    return caps
+
+# ----- Components ----- #
+
 import cookies
 import breadcrumbs
 import accordion_carousel
@@ -23,24 +46,11 @@ import overview_card
 import section_hero
 import seo
 
-username = os.getenv("CBT_USERNAME")
-authkey = os.getenv("CBT_AUTHKEY")
-
-api_session = requests.Session()
-api_session.auth = (username, authkey)
-test_result = None
-build = "1.8.4"
-release = "Azure Staging Components - {}".format(build)
-baseUrl = "https://test.moneyhelper.org.uk"
-
-caps = {
-    'name': '{}'.format(release),
-    'build': '{}'.format(build),
-    'platform': 'Windows',
-    'browserName': 'Chrome',
-    'screenResolution' : '1920x1080',
-    'record_video' : 'true'
-}
+caps = setCaps(
+    platform='Windows', 
+    browserName='Chrome', 
+    version='102'
+)
 
 driver = webdriver.Remote(
     command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
@@ -48,23 +58,23 @@ driver = webdriver.Remote(
 
 tests = {
     "Cookies" : cookies,
-    "Breadcrumbs" : breadcrumbs,
-    "Accordion Carousel" : accordion_carousel,
-    "Article Feedback" : article_feedback,
-    "Callouts" : callouts,
-    "Chat" : chat,
-    "Emergency Banner" : emergency_banner,
-    "Footer Follow" : footer_follow,
-    "Global Card" : global_card,
-    "Header" : header,
-    "Home Hero" : home_hero,
-    "Icon Anchor" : icon_anchor,
-    "Images" : images,
-    "Local Navigation" : local_navigation,
-    "Navigation" : navigation,
-    "Overview Card" : overview_card,
-    "Section Hero" : section_hero,
-    "SEO" : seo,
+    # "Breadcrumbs" : breadcrumbs,
+    # "Accordion Carousel" : accordion_carousel,
+    # "Article Feedback" : article_feedback,
+    # "Callouts" : callouts,
+    # "Chat" : chat,
+    # "Emergency Banner" : emergency_banner,
+    # "Footer Follow" : footer_follow,
+    # "Global Card" : global_card,
+    # "Header" : header,
+    # "Home Hero" : home_hero,
+    # "Icon Anchor" : icon_anchor,
+    # "Images" : images,
+    # "Local Navigation" : local_navigation,
+    # "Navigation" : navigation,
+    # "Overview Card" : overview_card,
+    # "Section Hero" : section_hero,
+    # "SEO" : seo,
 }
 
 try:
@@ -85,7 +95,8 @@ if test_result is not None:
     api_session.put('https://crossbrowsertesting.com/api/v3/selenium/' + driver.session_id,
         data={'action':'set_score', 'score':test_result})
 
-# Search
+# ----- Search ----- #
+
 import search
 
 api_session = requests.Session()
@@ -125,7 +136,8 @@ if test_result is not None:
     api_session.put('https://crossbrowsertesting.com/api/v3/selenium/' + driver.session_id,
         data={'action':'set_score', 'score':test_result})
 
-# Templates
+# ----- Templates ----- #
+
 import blog_post
 import subcategory_page
 import subcategory_article_list
