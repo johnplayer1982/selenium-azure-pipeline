@@ -22,7 +22,6 @@ import subcategory_page
 import local_navigation
 import navigation
 import overview_card
-import search
 import section_hero
 import seo
 
@@ -93,16 +92,12 @@ if test_result is not None:
         data={'action':'set_score', 'score':test_result})
 
 # Search
-
-username = os.getenv("CBT_USERNAME")
-authkey = os.getenv("CBT_AUTHKEY")
+import search
 
 api_session = requests.Session()
 api_session.auth = (username, authkey)
 test_result = None
 release = "Azure Staging Search"
-build = "1.8.4"
-baseUrl = "https://test.moneyhelper.org.uk"
 
 caps = {
     'name': '{}'.format(release),
@@ -122,10 +117,7 @@ tests = {
 }
 
 try:
-    for key, value in tests.items():
-        print('Testing {}'.format(key))
-        value.runTest(baseUrl, driver)
-        print('End of {} test\n'.format(key))
+    search.runTest(baseUrl, driver)
     test_result = 'pass'
 except AssertionError as e:
     test_result = 'fail'
