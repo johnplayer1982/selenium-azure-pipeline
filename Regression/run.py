@@ -104,14 +104,11 @@ api_session.auth = (username, authkey)
 test_result = None
 release = "Azure Staging Search - {}".format(build)
 
-caps = {
-    'name': '{}'.format(release),
-    'build': '{}'.format(build),
-    'platform': 'Windows',
-    'browserName': 'Edge',
-    'screenResolution' : '1920x1080',
-    'record_video' : 'true'
-}
+caps = setCaps(
+    platform='Windows', 
+    browser='Edge', 
+    version='96'
+)
 
 driver = webdriver.Remote(
     command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
@@ -147,14 +144,11 @@ api_session.auth = (username, authkey)
 test_result = None
 release = "Azure Staging Templates - {}".format(build)
 
-caps = {
-    'name': '{}'.format(release),
-    'build': '{}'.format(build),
-    'platform': 'Windows',
-    'browserName': 'Edge',
-    'screenResolution' : '1920x1080',
-    'record_video' : 'true'
-}
+caps = setCaps(
+    platform='Windows', 
+    browser='Firefox', 
+    version='95'
+)
 
 driver = webdriver.Remote(
     command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
