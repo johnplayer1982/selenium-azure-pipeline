@@ -11,6 +11,7 @@ def getImageSize(selector):
 def runTest(baseUrl, driver):
 
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
+    teaser_warnings = set()
 
     locales = {
         "/en",
@@ -88,10 +89,10 @@ def runTest(baseUrl, driver):
         if len(teasers) > 0:
             baseHeight = teasers[0].value_of_css_property('height')
             for teaser in teasers:
-                
                 teaserHeight = teaser.value_of_css_property('height')
                 # confirm the height of the teasers are consistent
-                if teaserHeight == baseHeight:
-                    print('- Teasers are consistent height')
-                else:
-                    print('> WARNING: Teasers are inconsistent height on {}'.format(toolsUrl))
+                if teaserHeight != baseHeight:
+                    teaser_warnings.add('> WARNING: Teasers are inconsistent height on {}'.format(toolsUrl))
+
+    for warning in teaser_warnings:
+        print(warning)

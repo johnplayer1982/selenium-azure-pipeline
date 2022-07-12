@@ -33,4 +33,4 @@ def runTest(baseUrl, driver):
             lastPMargin = lastTag.value_of_css_property('margin-bottom')
             # If the last element has no bottom margin then we are good
             assert lastPMargin == "0px"
-            print('- Last element in text component has no bottom margin: {}'.format(lastPMargin))
+        print('- Last element in text components have no bottom margin as expected')

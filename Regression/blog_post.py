@@ -151,9 +151,6 @@ def runTest(baseUrl, driver):
         # If there are no h2 elements
         if blogH2count >= 1:
             print('- {blogH2count} H2 title elements found'.format(blogH2count=blogH2count))
-            for title in blogH2Titles:
-                print("  + {title}".format(title=title.text))
-
         else:
             message = "- WARNING: Blog post contains no H2 title elements\n    {iterationUrl}".format(
                 iterationUrl=iterationUrl
