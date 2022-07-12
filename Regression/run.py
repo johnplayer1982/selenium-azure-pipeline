@@ -10,7 +10,7 @@ authkey = os.getenv("CBT_AUTHKEY")
 environment = os.getenv("ENVIRONMENT")
 
 if environment == "production":
-    baseUrl = "https://test.moneyhelper.org.uk"
+    baseUrl = "https://www.moneyhelper.org.uk"
 elif environment == "staging":
     baseUrl = "https://test.moneyhelper.org.uk"
 else:
