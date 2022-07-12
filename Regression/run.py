@@ -7,12 +7,20 @@ import os, requests
 username = os.getenv("CBT_USERNAME")
 authkey = os.getenv("CBT_AUTHKEY")
 
+environment = os.getenv("ENVIRONMENT")
+
+if environment == "production":
+    baseUrl = "https://test.moneyhelper.org.uk"
+elif environment == "staging":
+    baseUrl = "https://test.moneyhelper.org.uk"
+else:
+    raise AssertionError('Environment variable should either be "staging" or "production"')
+
 api_session = requests.Session()
 api_session.auth = (username, authkey)
 test_result = None
 build = "1.8.4"
 release = "Azure Staging Components - {}".format(build)
-baseUrl = "https://test.moneyhelper.org.uk"
 
 def setCaps(platform, browser, version):
     caps = {

@@ -60,12 +60,10 @@ def runTest(baseUrl, driver):
         # Icons
         icon = item.find_element(By.CSS_SELECTOR, 'span.cmp-globalcard__content-main-text-list-item-icon')
         assert icon.get_attribute('aria-hidden') == "true"
-        print('  - Icon includes aria-hidden true attribute')
 
         assert icon.value_of_css_property('color') == "rgba(200, 42, 135, 1)"
         assert icon.value_of_css_property('margin') == "0px 12px 0px 0px"
         assert icon.value_of_css_property('font-size') == "20px"
-        print('  - Icon styles OK')
 
         # Text
         text = item.find_element(By.CSS_SELECTOR, 'span.cmp-globalcard__content-main-text-list-item-text')
@@ -74,7 +72,6 @@ def runTest(baseUrl, driver):
         assert text.value_of_css_property('color') == "rgba(0, 11, 59, 1)"
         assert text.value_of_css_property('margin') == "0px"
         assert text.value_of_css_property('padding') == "0px"
-        print('  - Text styles OK')
 
     print(' + List item styles OK')
 
