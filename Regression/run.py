@@ -14,7 +14,7 @@ if environment == "production":
 elif environment == "staging":
     baseUrl = "https://test.moneyhelper.org.uk"
 else:
-    raise AssertionError('Environment variable should either be "staging" or "production"')
+    raise AssertionError('Please set the "environment" variable to either "staging" or "production"')
 
 api_session = requests.Session()
 api_session.auth = (username, authkey)

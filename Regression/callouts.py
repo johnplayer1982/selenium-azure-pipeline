@@ -7,8 +7,8 @@ def runTest(baseUrl, driver):
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
 
     urls = [
-        "/en/everyday-money/types-of-credit/simple-guide-to-credit-cards",
-        "/cy/everyday-money/types-of-credit/simple-guide-to-credit-cards"
+        "/en/homes/buying-a-home/money-timeline-when-buying-property-england-wales-n-ireland",
+        "/cy/homes/buying-a-home/money-timeline-when-buying-property-england-wales-n-ireland"
     ]
 
     for url in urls:

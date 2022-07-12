@@ -13,10 +13,9 @@ def runTest(baseUrl, driver):
         print("\nVisiting {landingPageUrl}".format(landingPageUrl=landingPageUrl))
 
         # Check the page has a H1 and it contains content
-        heading = driver.find_element(By.CSS_SELECTOR, "h1.cmp-title__text").text
-        headingLen = len(heading)
-        assert headingLen > 0
-        print("- Page heading found: {heading} ({headingLen} characters)".format(heading=heading, headingLen=headingLen))
+        heading = driver.find_elements(By.CSS_SELECTOR, "h1.cmp-title__text")
+        assert heading
+        print("- Page heading found: {heading}".format(heading=heading))
         
         # Check dimensions of the feature image
         featureImage = driver.find_element(By.CSS_SELECTOR, ".cmp-image")
