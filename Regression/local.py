@@ -34,7 +34,7 @@ import misc
 
 from selenium.webdriver.chrome.options import Options
 
-baseUrl = "https://test.moneyhelper.org.uk"
+baseUrl = "https://www.moneyhelper.org.uk"
 
 if platform.system() == "Darwin":
     driver = webdriver.Safari()
@@ -53,7 +53,7 @@ tests = {
     # "Blog Post" : blog_post,
     # "Callouts" : callouts,
     # "Chat" : chat,
-    "Emergency Banner" : emergency_banner,
+    # "Emergency Banner" : emergency_banner,
     # "Footer Follow" : footer_follow,
     # "Global Card" : global_card,
     # "Header" : header,
