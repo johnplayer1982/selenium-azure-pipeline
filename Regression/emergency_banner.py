@@ -52,16 +52,15 @@ def runTest(baseUrl, driver):
             assert "emergency_banner" in cookieStr
             print("- 'emergency_banner' Cookie set in necessary cookies")
             
-            # Navigate to a number of pages to confirm the banner is not visible, cookie set and being acted on
-            articleUrls = articlelist.get_articles()
-            print('- Checking a few pages')
+    # Navigate to a number of pages to confirm the banner is not visible, cookie set and being acted on
+    articleUrls = articlelist.get_articles()
+    print('- Checking a few pages')
 
-        for url in articleUrls:
+    for url in articleUrls:
 
-            url = url[0]
-            iterationUrl = "{baseUrl}{url}".format(baseUrl=baseUrl, url=url)
-            driver.get(iterationUrl)
+        iterationUrl = "{baseUrl}{url}".format(baseUrl=baseUrl, url=url)
+        driver.get(iterationUrl)
 
-            # If the banner size is not greater than 1px tall, in other words visible
-            assert not driver.find_element(By.CSS_SELECTOR, ".emergency-banner").size['height'] >= 1
-            print(' + Emergency banner hidden on {iterationUrl}'.format(iterationUrl=iterationUrl))
+        # If the banner size is not greater than 1px tall, in other words visible
+        assert not driver.find_element(By.CSS_SELECTOR, ".emergency-banner").size['height'] >= 1
+        print(' + Emergency banner hidden on {iterationUrl}'.format(iterationUrl=iterationUrl))

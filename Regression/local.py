@@ -53,7 +53,7 @@ tests = {
     # "Blog Post" : blog_post,
     # "Callouts" : callouts,
     # "Chat" : chat,
-    # "Emergency Banner" : emergency_banner,
+    "Emergency Banner" : emergency_banner,
     # "Footer Follow" : footer_follow,
     # "Global Card" : global_card,
     # "Header" : header,
@@ -71,7 +71,7 @@ tests = {
     # "Seperator Anchor" : seperator_anchor,
     # "Social Sharing" : social_sharing,
     # "Tag Selector" : tag_selector,
-    "Teasers" : teasers,
+    # "Teasers" : teasers,
     # "Text" : text,
     # "Misc Tests" : misc,
 }
