@@ -25,10 +25,14 @@ def confirm_accepted_cookies(driver):
 
 def confirm_declined_cookies(driver):
     all_cookies = driver.get_cookies()
-    for key, value in all_cookies[0].items():
-        # Confirm necessary cookies set
-        if key == "value":
-            assert '"optionalCookies":{"analytics":"revoked","marketing":"revoked"}' in value
+    declined_passed = False
+    for cookie_dict in all_cookies:
+        for key, value in cookie_dict.items():
+            # Confirm necessary cookies set
+            if key == "value":
+                if '"optionalCookies":{"analytics":"revoked","marketing":"revoked"}' in value:
+                    declined_passed = True
+    assert declined_passed
     print('- Correct cookies set for rejected option')
 
 def confirm_analytics_only(driver):
