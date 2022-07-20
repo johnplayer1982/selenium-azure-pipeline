@@ -118,7 +118,7 @@ import search
 api_session = requests.Session()
 api_session.auth = (username, authkey)
 test_result = None
-release = "Azure Staging Search - {}".format(build)
+release = "Azure {environment} Search - {build}".format(environment=environment, build=build)
 
 caps = setCaps(
     platform='Windows', 
@@ -155,7 +155,7 @@ import article_template
 api_session = requests.Session()
 api_session.auth = (username, authkey)
 test_result = None
-release = "Azure Staging Templates - {}".format(build)
+release = "Azure {environment} Templates - {build}".format(environment=environment, build=build)
 
 caps = setCaps(
     platform='Windows', 
@@ -198,7 +198,7 @@ import seo
 api_session = requests.Session()
 api_session.auth = (username, authkey)
 test_result = None
-release = "Azure Staging SEO - {}".format(build)
+release = "Azure {environment} SEO - {build}".format(environment=environment, build=build)
 
 caps = setCaps(
     platform='Windows', 
@@ -231,7 +231,7 @@ import misc
 api_session = requests.Session()
 api_session.auth = (username, authkey)
 test_result = None
-release = "Azure Staging MISC - {}".format(build)
+release = "Azure {environment} MISC - {build}".format(environment=environment, build=build)
 
 caps = setCaps(
     platform='Windows', 
