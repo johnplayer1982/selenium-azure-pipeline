@@ -1,12 +1,10 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-import os, requests, platform
+import os, platform
 
 import cookies
 import breadcrumbs
 import accordion_carousel
-import article_feedback
+import article_template
 import blog_post
 import callouts
 import chat
@@ -49,7 +47,7 @@ tests = {
     "Cookies" : cookies,
     "Breadcrumbs" : breadcrumbs,
     "Accordion Carousel" : accordion_carousel,
-    "Article Feedback" : article_feedback,
+    "Article Template" : article_template,
     "Blog Post" : blog_post,
     "Callouts" : callouts,
     "Chat" : chat,

@@ -6,8 +6,8 @@ import os, requests
 # Vars
 username = os.getenv("CBT_USERNAME")
 authkey = os.getenv("CBT_AUTHKEY")
-
 environment = os.getenv("ENVIRONMENT")
+build = os.getenv("BUILD")
 
 if environment == "production":
     baseUrl = "https://www.moneyhelper.org.uk"
@@ -19,8 +19,8 @@ else:
 api_session = requests.Session()
 api_session.auth = (username, authkey)
 test_result = None
-build = "1.8.4"
-release = "Azure Staging Components - {}".format(build)
+build = build
+release = "Azure {environment} Components - {build}".format(environment=environment, build=build)
 
 def setCaps(platform, browser, version):
     caps = {
@@ -40,7 +40,6 @@ def setCaps(platform, browser, version):
 import cookies
 import breadcrumbs
 import accordion_carousel
-import article_feedback
 import callouts
 import chat
 import emergency_banner
@@ -74,7 +73,6 @@ tests = {
     "Cookies" : cookies,
     "Breadcrumbs" : breadcrumbs,
     "Accordion Carousel" : accordion_carousel,
-    "Article Feedback" : article_feedback,
     "Callouts" : callouts,
     "Chat" : chat,
     "Emergency Banner" : emergency_banner,
@@ -152,6 +150,7 @@ if test_result is not None:
 import blog_post
 import subcategory_page
 import subcategory_article_list
+import article_template
 
 api_session = requests.Session()
 api_session.auth = (username, authkey)
@@ -172,6 +171,7 @@ tests = {
     "Blog Post" : blog_post,
     "Subcategory Page" : subcategory_page,
     "Subcategory Article List" : subcategory_article_list,
+    "Article Template" : article_template,
 }
 
 try:
