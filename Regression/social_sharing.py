@@ -83,7 +83,7 @@ def runTest(baseUrl, driver):
             print('- Email button contains correct text for language: {}'.format(email_dropdown_button_text))
             emailBtn.click()
             print("- Email button clicked")
-            time.sleep(1)
+            time.sleep(2)
 
             emailDropdown = driver.find_element_by_css_selector(".cmp-sharing__expandable-wrapper-email")
             send_email_button = emailDropdown.find_element(By.CSS_SELECTOR, 'span.cmp-sharing__button-text').text
