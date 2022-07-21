@@ -5,6 +5,7 @@ import time
 def runTest(baseUrl, driver):
     
     eachpagetype = SourceFileLoader('geteachpagetype', '../Lib/each_page_type.py').load_module()
+    dismisscookie = SourceFileLoader('getcookiefile', '../Lib/dismisscookie.py').load_module()
 
     urls = {
         "EN Home" : "/en", # EN home
@@ -26,6 +27,10 @@ def runTest(baseUrl, driver):
         "Meta description" : 'meta[name="description"]',
         "Meta description" : 'meta[name="viewport"]'
     }
+
+    siteUrl = "{}/en".format(baseUrl)
+    driver.get(siteUrl)
+    dismisscookie.dismissCookieBanner(driver)
 
     for key, value in urls.items():
         print('\n- Checking template {}'.format(key))

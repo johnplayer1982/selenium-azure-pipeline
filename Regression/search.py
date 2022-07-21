@@ -15,6 +15,7 @@ def runTest(baseUrl, driver):
 
     def runSearchTest(term, lang):
 
+        driver.get(siteUrl)
         dismisscookie.dismissCookieBanner(driver)
         searchTerm = term
         print("\n- Running Search term test for '{term}'".format(term=searchTerm))
