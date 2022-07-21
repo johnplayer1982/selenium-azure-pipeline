@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from importlib.machinery import SourceFileLoader
+import time
 
 def runTest(baseUrl, driver):
 
@@ -15,6 +16,7 @@ def runTest(baseUrl, driver):
         iterationUrl = "{baseUrl}{article}".format(baseUrl=baseUrl, article=article)
         driver.get(iterationUrl)
         print('\n Visiting {}'.format(iterationUrl))
+        time.sleep(2)
         expectedHeight = 61
         
         # Desktop
