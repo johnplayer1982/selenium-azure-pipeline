@@ -1,4 +1,3 @@
-from email.mime import base
 from selenium.webdriver.common.by import By
 from importlib.machinery import SourceFileLoader
 import time

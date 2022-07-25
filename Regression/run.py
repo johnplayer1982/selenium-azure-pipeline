@@ -35,6 +35,33 @@ def setCaps(platform, browser, version):
     }
     return caps
 
+def get_driver():
+    driver = webdriver.Remote(
+        command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
+        desired_capabilities=caps)
+    return driver
+
+def run_tests(tests):
+    try:
+        for key, value in tests.items():
+            print('Testing {}'.format(key))
+            value.runTest(baseUrl, driver)
+            print('End of {} test\n'.format(key))
+        test_result = 'pass'
+    except AssertionError as e:
+        test_result = 'fail'
+        raise
+    return test_result
+
+def clean_up(driver, test_result):
+    print("Done with session %s" % driver.session_id)
+    driver.quit()
+    # Here we make the api call to set the test's score.
+    # Pass it it passes, fail if an assertion fails, unset if the test didn't finish
+    if test_result is not None:
+        api_session.put('https://crossbrowsertesting.com/api/v3/selenium/' + driver.session_id,
+            data={'action':'set_score', 'score':test_result})
+
 # ----- Components ----- #
 
 import cookies
@@ -65,9 +92,7 @@ caps = setCaps(
     version='102'
 )
 
-driver = webdriver.Remote(
-    command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
-    desired_capabilities=caps)
+driver = get_driver()
 
 tests = {
     "Cookies" : cookies,
@@ -93,23 +118,38 @@ tests = {
     "Text" : text,
 }
 
-try:
-    for key, value in tests.items():
-        print('Testing {}'.format(key))
-        value.runTest(baseUrl, driver)
-        print('End of {} test\n'.format(key))
-    test_result = 'pass'
-except AssertionError as e:
-    test_result = 'fail'
-    raise
+test_result = run_tests(tests)
+clean_up(
+    driver,
+    test_result
+)
 
-print("Done with session %s" % driver.session_id)
-driver.quit()
-# Here we make the api call to set the test's score.
-# Pass it it passes, fail if an assertion fails, unset if the test didn't finish
-if test_result is not None:
-    api_session.put('https://crossbrowsertesting.com/api/v3/selenium/' + driver.session_id,
-        data={'action':'set_score', 'score':test_result})
+# ----- Tools ----- #
+
+import tools
+
+api_session = requests.Session()
+api_session.auth = (username, authkey)
+test_result = None
+release = "Azure {environment} Tools Smoke - {build}".format(environment=environment, build=build)
+
+caps = setCaps(
+    platform='Windows', 
+    browser='Chrome', 
+    version='102'
+)
+
+driver = get_driver()
+
+tests = {
+    "Tools" : tools
+}
+
+test_result = run_tests(tests)
+clean_up(
+    driver,
+    test_result
+)
 
 # ----- Search ----- #
 
@@ -126,24 +166,17 @@ caps = setCaps(
     version='96'
 )
 
-driver = webdriver.Remote(
-    command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
-    desired_capabilities=caps)
+driver = get_driver()
 
-try:
-    search.runTest(baseUrl, driver)
-    test_result = 'pass'
-except AssertionError as e:
-    test_result = 'fail'
-    raise
+tests = {
+    "Search" : search
+}
 
-print("Done with session %s" % driver.session_id)
-driver.quit()
-# Here we make the api call to set the test's score.
-# Pass it it passes, fail if an assertion fails, unset if the test didn't finish
-if test_result is not None:
-    api_session.put('https://crossbrowsertesting.com/api/v3/selenium/' + driver.session_id,
-        data={'action':'set_score', 'score':test_result})
+test_result = run_tests(tests)
+clean_up(
+    driver,
+    test_result
+)
 
 # ----- Templates ----- #
 
@@ -163,9 +196,7 @@ caps = setCaps(
     version='96'
 )
 
-driver = webdriver.Remote(
-    command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
-    desired_capabilities=caps)
+driver = get_driver()
 
 tests = {
     "Blog Post" : blog_post,
@@ -174,25 +205,14 @@ tests = {
     "Article Template" : article_template,
 }
 
-try:
-    for key, value in tests.items():
-        print('Testing {}'.format(key))
-        value.runTest(baseUrl, driver)
-        print('End of {} test\n'.format(key))
-    test_result = 'pass'
-except AssertionError as e:
-    test_result = 'fail'
-    raise
-
-print("Done with session %s" % driver.session_id)
-driver.quit()
-# Here we make the api call to set the test's score.
-# Pass it it passes, fail if an assertion fails, unset if the test didn't finish
-if test_result is not None:
-    api_session.put('https://crossbrowsertesting.com/api/v3/selenium/' + driver.session_id,
-        data={'action':'set_score', 'score':test_result})
+test_result = run_tests(tests)
+clean_up(
+    driver,
+    test_result
+)
 
 # ----- SEO ----- #
+
 import seo
 
 api_session = requests.Session()
@@ -206,26 +226,20 @@ caps = setCaps(
     version='102'
 )
 
-driver = webdriver.Remote(
-    command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
-    desired_capabilities=caps)
+driver = get_driver()
 
-try:
-    seo.runTest(baseUrl, driver)
-    test_result = 'pass'
-except AssertionError as e:
-    test_result = 'fail'
-    raise
+tests = {
+    "SEO" : seo
+}
 
-print("Done with session %s" % driver.session_id)
-driver.quit()
-# Here we make the api call to set the test's score.
-# Pass it it passes, fail if an assertion fails, unset if the test didn't finish
-if test_result is not None:
-    api_session.put('https://crossbrowsertesting.com/api/v3/selenium/' + driver.session_id,
-        data={'action':'set_score', 'score':test_result})
+test_result = run_tests(tests)
+clean_up(
+    driver,
+    test_result
+)
 
 # ----- MISC ----- #
+
 import misc
 
 api_session = requests.Session()
@@ -239,21 +253,14 @@ caps = setCaps(
     version='102'
 )
 
-driver = webdriver.Remote(
-    command_executor="http://%s:%s@hub.crossbrowsertesting.com/wd/hub"%(username, authkey),
-    desired_capabilities=caps)
+driver = get_driver()
 
-try:
-    misc.runTest(baseUrl, driver)
-    test_result = 'pass'
-except AssertionError as e:
-    test_result = 'fail'
-    raise
+tests = {
+    "MISC" : misc
+}
 
-print("Done with session %s" % driver.session_id)
-driver.quit()
-# Here we make the api call to set the test's score.
-# Pass it it passes, fail if an assertion fails, unset if the test didn't finish
-if test_result is not None:
-    api_session.put('https://crossbrowsertesting.com/api/v3/selenium/' + driver.session_id,
-        data={'action':'set_score', 'score':test_result})
+test_result = run_tests(tests)
+clean_up(
+    driver,
+    test_result
+)

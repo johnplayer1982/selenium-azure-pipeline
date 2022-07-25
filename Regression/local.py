@@ -29,6 +29,7 @@ import tag_selector
 import teasers
 import text
 import misc
+import tools
 
 from selenium.webdriver.chrome.options import Options
 
@@ -72,6 +73,7 @@ tests = {
     "Teasers" : teasers,
     "Text" : text,
     "Misc Tests" : misc,
+    "Tools" : tools,
 }
 
 for key, value in tests.items():
