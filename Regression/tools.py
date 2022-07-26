@@ -13,7 +13,7 @@ def verify_status_code(tool_url):
 def runTest(baseUrl, driver):
     
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
-    dismisscookie = SourceFileLoader('getcookiefile', '../lib/dismisscookie.py').load_module()
+    dismisscookie = SourceFileLoader('getcookiefile', '../Lib/dismisscookie.py').load_module()
 
     locales = {
         "/en",
