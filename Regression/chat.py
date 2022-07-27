@@ -29,7 +29,7 @@ def runTest(baseUrl, driver):
         chatBtn.click()
         print("- Clicked the chat button for {key}".format(key=key))
         chatPanel = driver.find_element(By.CSS_SELECTOR, ".cmp-contact__content")
-        assert chatPanel.is_displayed()
+        assert chatPanel.value_of_css_property('display') == "flex"
         print("- Chat panel is open")
         
         # Confirm clicking the overlay closes the panel

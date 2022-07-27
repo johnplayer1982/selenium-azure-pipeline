@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from importlib.machinery import SourceFileLoader
+import requests
 
 def runTest(baseUrl, driver):
 
@@ -170,10 +171,10 @@ def runTest(baseUrl, driver):
         # Confirm link exists and points to the right place
         blogAuthorLink = blogAuthor.find_element(By.CSS_SELECTOR, '.cmp-aboutauthor__link')
         blogAuthorLinkHref = blogAuthorLink.get_attribute('href')
-        formattedAuthorName = blogAuthorName.text.replace(" ", "+")
 
-        assert formattedAuthorName in blogAuthorLinkHref
-        print('- {formattedAuthorName} in author link URL'.format(formattedAuthorName=formattedAuthorName))
+        author_link_status = requests.get(blogAuthorLinkHref).status_code
+        assert author_link_status == 200
+        print('- Blog author link OK (200)')
 
         # Confirm correct font is used by the author component - 2976
         expectedFont = "Caveat, cursive"

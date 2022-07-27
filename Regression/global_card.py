@@ -28,9 +28,9 @@ def runTest(baseUrl, driver):
     globalcard_overlay_text = globalcard_element.find_element(By.CSS_SELECTOR, '.cmp-globalcard__title-overlay')
     assert globalcard_overlay_text.value_of_css_property('margin') == "0px"
     assert globalcard_overlay_text.value_of_css_property('padding') == "10px 16px"
-    assert globalcard_overlay_text.value_of_css_property('color') == "rgba(0, 11, 59, 1)"
     assert globalcard_overlay_text.value_of_css_property('font-size') == "48px"
     assert globalcard_overlay_text.value_of_css_property('font-weight') == "700"
+    assert "0, 11, 59" in globalcard_overlay_text.value_of_css_property('color')
     print(' + Image overlay text styles OK')
 
     globalcard_text = globalcard_element.find_element(By.CSS_SELECTOR, '.cmp-globalcard__content-main-text')
@@ -54,24 +54,24 @@ def runTest(baseUrl, driver):
         assert item.value_of_css_property('margin') == "0px 0px 24px"
         assert item.value_of_css_property('padding') == "0px"
         assert item.value_of_css_property('line-height') == "28px"
-        assert item.value_of_css_property('color') == "rgba(0, 11, 59, 1)"
         assert item.value_of_css_property('display') == "flex"
+        assert "0, 11, 59" in item.value_of_css_property('color')
 
         # Icons
         icon = item.find_element(By.CSS_SELECTOR, 'span.cmp-globalcard__content-main-text-list-item-icon')
         assert icon.get_attribute('aria-hidden') == "true"
 
-        assert icon.value_of_css_property('color') == "rgba(200, 42, 135, 1)"
         assert icon.value_of_css_property('margin') == "0px 12px 0px 0px"
         assert icon.value_of_css_property('font-size') == "20px"
+        assert "200, 42, 135" in icon.value_of_css_property('color')
 
         # Text
         text = item.find_element(By.CSS_SELECTOR, 'span.cmp-globalcard__content-main-text-list-item-text')
         assert text.value_of_css_property('font-size') == "19px"
         assert text.value_of_css_property('font-family') == "Roobert, sans-serif"
-        assert text.value_of_css_property('color') == "rgba(0, 11, 59, 1)"
         assert text.value_of_css_property('margin') == "0px"
         assert text.value_of_css_property('padding') == "0px"
+        assert "0, 11, 59" in text.value_of_css_property('color')
 
     print(' + List item styles OK')
 
@@ -81,17 +81,17 @@ def runTest(baseUrl, driver):
     print(' + Button found')
     assert globalcard_button.value_of_css_property('margin') == "0px"
     assert globalcard_button.value_of_css_property('padding') == "0px"
-    assert globalcard_button.value_of_css_property('color') == "rgba(174, 0, 96, 1)"
     assert globalcard_button.value_of_css_property('cursor') == "pointer"
+    assert "174, 0, 96" in globalcard_button.value_of_css_property('color')
     print(' + Button element styles OK')
 
     globalcard_button_span = globalcard_button.find_element(By.CSS_SELECTOR, 'span.cmp-globalcard__content-main-text-button-a-content')
     assert globalcard_button_span.value_of_css_property('margin') == "0px"
     assert globalcard_button_span.value_of_css_property('padding') == "8.5px 16px"
-    assert globalcard_button_span.value_of_css_property('color') == "rgba(255, 255, 255, 1)"
-    assert globalcard_button_span.value_of_css_property('background-color') == "rgba(200, 42, 135, 1)"
     assert globalcard_button_span.value_of_css_property('font-size') == "16px"
     assert globalcard_button_span.value_of_css_property('line-height') == "23px"
+    assert "255, 255, 255" in globalcard_button_span.value_of_css_property('color')
+    assert "200, 42, 135" in globalcard_button_span.value_of_css_property('background-color')
     print(' + Button element text styles OK')
 
     # Mobile

@@ -158,7 +158,7 @@ def runTest(baseUrl, driver):
     print('- Set preferences link styles OK')
 
     # Click set preferences
-    set_preferences_link.click()
+    driver.execute_script("arguments[0].click();", set_preferences_link)
     time.sleep(1)
 
     overlay = driver.find_element(By.CSS_SELECTOR, 'div#ccc-overlay')
