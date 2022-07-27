@@ -58,8 +58,7 @@ def confirm_marketing_only(driver):
     print('- Correct cookies set for marketing only option')
 
 def runTest(baseUrl, driver):
-    
-    dismisscookie = SourceFileLoader('getcookiefile', '../Lib/dismisscookie.py').load_module()
+
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
 
     driver.get(baseUrl)
@@ -76,6 +75,9 @@ def runTest(baseUrl, driver):
     # Top panel
     cookie_panel_top = driver.find_element(By.CSS_SELECTOR, 'div.ccc-notify__top')
     cookie_panel_top_opacity = cookie_panel_top.value_of_css_property('opacity')
+    # 5152 - Confirm cookie banner title is H2
+    assert driver.find_element(By.CSS_SELECTOR, 'div#ccc-notify-title > h2')
+    print('- Cookie preferences top panel title is a H2')
     assert cookie_panel_top.is_displayed()
     assert cookie_panel_top_opacity == "1"
     print("- Cookie preferences top panel visible")
@@ -130,7 +132,6 @@ def runTest(baseUrl, driver):
         "border" : "1px solid rgb(174, 0, 96)",
     }
     for key, value in reject_styles.items():
-        print(key, value)
         assert reject.value_of_css_property(key) == value
     assert "255, 255, 255" in reject.value_of_css_property('color')
     assert "0, 0, 0" in reject.value_of_css_property('background-color')
@@ -179,13 +180,26 @@ def runTest(baseUrl, driver):
         assert side_menu.value_of_css_property(key) == value
     print('- Side menu container styles OK')
 
-    assert driver.find_element(By.CSS_SELECTOR, 'div#ccc-title > h2')
-    print(' + Cookie side panel title a H2')
-    assert driver.find_element(By.CSS_SELECTOR, 'div#ccc-necessary-title > h2')
-    print(' + Cookie side panel subtitle a H2')
-    optional_headers = driver.find_elements(By.CSS_SELECTOR, 'div.optional-cookie-header > h3')
-    assert len(optional_headers) == 2
-    print(' + Cookie side panel optional headings are H3s')
+    # Check titles are correct levels
+    assert side_menu.find_element(By.CSS_SELECTOR, 'div#ccc-title > h2')
+    print('- Side menu main title is H2')
+    assert side_menu.find_element(By.CSS_SELECTOR, 'div#ccc-necessary-title > h2')
+    print('- Side menu neccessary cookies title is H2')
+    optional_cookie_headers = side_menu.find_elements(By.CSS_SELECTOR, 'div.optional-cookie-header > h3')
+    assert len(optional_cookie_headers) == 2
+    print('- 2 Level 3 headings found')
+
+    side_menu_styles = {
+        "position" : "fixed",
+        "left" : "0px",
+        "top" : "0px",
+        "bottom" : "0px",
+        "max-width" : "520px"
+    }
+
+    for key, value in side_menu_styles.items():
+        assert side_menu.value_of_css_property(key) == value
+    print('- Side menu container styles OK')
 
     # Cookie functionality
     # On accept, following cookies are set: _gid, _ga_GSRBL25VV8. _fbp, _ga
