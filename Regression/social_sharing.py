@@ -72,7 +72,7 @@ def runTest(baseUrl, driver):
             moreOptionsClose = driver.find_element_by_css_selector(".cmp-sharing__expandable-close-link")
             moreOptionsClose.click()
             print("- Close button clicked")
-            time.sleep(0.5)
+            time.sleep(1)
             assert moreOptionsPanel.get_attribute("style") == "display: none;"
             print("- More options panel closed")
 
