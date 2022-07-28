@@ -29,7 +29,8 @@ def runTest(baseUrl, driver):
         chatBtn.click()
         print("- Clicked the chat button for {key}".format(key=key))
         chatPanel = driver.find_element(By.CSS_SELECTOR, ".cmp-contact__content")
-        assert chatPanel.value_of_css_property('display') == "flex"
+        # assert chatPanel.value_of_css_property('display') == "flex"
+        assert chatPanel.is_displayed()
         print("- Chat panel is open")
         
         # Confirm clicking the overlay closes the panel
@@ -59,9 +60,9 @@ def runTest(baseUrl, driver):
         # Check menu level 2
         previousBtnCSS = ".cmp-contact__wrapper-previous"
         if key == "/en":
-            level1item1 = driver.find_element_by_xpath("//div[@class='cmp-contact__content']//span[@class='cmp-contact__menu-item-content'][normalize-space()='Pensions guidance']")
+            level1item1 = driver.find_element(By.XPATH, "//div[@class='cmp-contact__content']//span[@class='cmp-contact__menu-item-content'][normalize-space()='Pensions guidance']")
         else:
-            level1item1 = driver.find_element_by_xpath("//div[@class='cmp-contact__content']//span[@class='cmp-contact__menu-item-content'][normalize-space()='Arweiniad pensiynau']")
+            level1item1 = driver.find_element(By.XPATH, "//div[@class='cmp-contact__content']//span[@class='cmp-contact__menu-item-content'][normalize-space()='Arweiniad pensiynau']")
         
         level1item1.click()
         print("- Level 1 item 1 clicked")
@@ -69,9 +70,9 @@ def runTest(baseUrl, driver):
         print("- Back to level 1")
 
         if key == "/en":
-            level1item2 = driver.find_element_by_xpath("//div[@class='cmp-contact__content']//span[@class='cmp-contact__menu-item-content'][normalize-space()='Money guidance']")
+            level1item2 = driver.find_element(By.XPATH, "//div[@class='cmp-contact__content']//span[@class='cmp-contact__menu-item-content'][normalize-space()='Money guidance']")
         else:
-            level1item2 = driver.find_element_by_xpath("//div[@class='cmp-contact__content']//span[@class='cmp-contact__menu-item-content'][normalize-space()='Arweiniad ariannol']")
+            level1item2 = driver.find_element(By.XPATH, "//div[@class='cmp-contact__content']//span[@class='cmp-contact__menu-item-content'][normalize-space()='Arweiniad ariannol']")
 
         level1item2.click()
         print("- Level 1 item 2 clicked")
@@ -85,22 +86,22 @@ def runTest(baseUrl, driver):
         # Only check level 3 on production, on test the welsh menu isnt populated
         if url == "https://www.moneyhelper.org.uk":
             if key == "/en":
-                level1item1 = driver.find_element_by_xpath("//div[@class='cmp-contact__content']//span[@class='cmp-contact__menu-item-content'][normalize-space()='Pensions guidance']")
+                level1item1 = driver.find_element(By.XPATH, "//div[@class='cmp-contact__content']//span[@class='cmp-contact__menu-item-content'][normalize-space()='Pensions guidance']")
             else:
-                level1item1 = driver.find_element_by_xpath("//div[@class='cmp-contact__content']//span[@class='cmp-contact__menu-item-content'][normalize-space()='Arweiniad pensiynau']")
+                level1item1 = driver.find_element(By.XPATH, "//div[@class='cmp-contact__content']//span[@class='cmp-contact__menu-item-content'][normalize-space()='Arweiniad pensiynau']")
             
             level1item1.click()
             print("- Clicked level 1 item 1")
 
-            driver.find_element_by_xpath("//body/div[@id='contact-1to1']/div[@class='cmp-contact__content']/div[@class='scroll-bay']/div[@class='cmp-contact__menu aem-Grid aem-Grid--12']/div[1]/button[1]/span[1]").click()
+            driver.find_element(By.XPATH, "//body/div[@id='contact-1to1']/div[@class='cmp-contact__content']/div[@class='scroll-bay']/div[@class='cmp-contact__menu aem-Grid aem-Grid--12']/div[1]/button[1]/span[1]").click()
             driver.find_element(By.CSS_SELECTOR, previousBtnCSS).click()
             print("- Clicked level 2 item 1")
             
-            driver.find_element_by_xpath("//body/div[@id='contact-1to1']/div[@class='cmp-contact__content']/div[@class='scroll-bay']/div[@class='cmp-contact__menu aem-Grid aem-Grid--12']/div[2]/button[1]/span[1]").click()
+            driver.find_element(By.XPATH, "//body/div[@id='contact-1to1']/div[@class='cmp-contact__content']/div[@class='scroll-bay']/div[@class='cmp-contact__menu aem-Grid aem-Grid--12']/div[2]/button[1]/span[1]").click()
             driver.find_element(By.CSS_SELECTOR, previousBtnCSS).click()
             print("- Clicked level 2 item 2")
 
-            driver.find_element_by_xpath("//body/div[@id='contact-1to1']/div[@class='cmp-contact__content']/div[@class='scroll-bay']/div[@class='cmp-contact__menu aem-Grid aem-Grid--12']/div[3]/button[1]/span[1]").click()
+            driver.find_element(By.XPATH, "//body/div[@id='contact-1to1']/div[@class='cmp-contact__content']/div[@class='scroll-bay']/div[@class='cmp-contact__menu aem-Grid aem-Grid--12']/div[3]/button[1]/span[1]").click()
             driver.find_element(By.CSS_SELECTOR, previousBtnCSS).click()
             print("- Clicked level 2 item 3")
 

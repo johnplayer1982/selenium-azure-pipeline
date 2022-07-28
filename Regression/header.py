@@ -62,6 +62,7 @@ def runTest(baseUrl, driver):
 
         # Resize the window to tablet
         resize.resizeTablet(driver)
+        time.sleep(1)
         print("- Window resized to tablet breakpoint")
 
         # Confirm the tablet logo exists
@@ -99,7 +100,7 @@ def runTest(baseUrl, driver):
         # 3709 - "menu" word on mobile and tablet welsh header should change to "bwydlen"
         if key == "/cy":
             menuText = driver.find_element(By.CSS_SELECTOR, 'span.cmp-header__menu-toggle-open-title')
-            assert menuText.text == "bwydlen"
+            assert "bwydlen" in menuText.text
             print('- Welsh menu button text ok "bwydlen"')
 
     # Blog template

@@ -54,18 +54,18 @@ def runTest(baseUrl, driver):
         print(' + Text container styles OK')
 
         section_title = section_text_container.find_element(By.CSS_SELECTOR, 'h2.cmp-section-hero__content-main-text-title')
-        assert section_title.value_of_css_property('color') == "rgba(15, 25, 160, 1)"
         assert section_title.value_of_css_property('line-height') == "54px"
         assert section_title.value_of_css_property('font-size') == "48px"
         assert section_title.value_of_css_property('padding') == "0px 0px 35px"
         assert section_title.value_of_css_property('margin') == "0px"
+        assert "15, 25, 160" in section_title.value_of_css_property('color')
         print(' + Title styles OK')
 
         section_text = section_text_container.find_elements(By.CSS_SELECTOR, 'div.cmp-section-hero__content-main-text p')
         for text in section_text:
             assert text.value_of_css_property('margin') == "0px"
-            assert text.value_of_css_property('color') == "rgba(0, 11, 59, 1)"
             assert text.value_of_css_property('line-height') == "23px"
             assert text.value_of_css_property('font-weight') == "400"
             assert text.value_of_css_property('font-size') == "16px"
+            assert "0, 11, 59" in text.value_of_css_property('color')
         print(' + Text styles OK')

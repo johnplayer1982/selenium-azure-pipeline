@@ -66,7 +66,6 @@ def runTest(baseUrl, driver):
             tool_url = "{baseUrl}{item}{tool}".format(baseUrl=baseUrl, item=item, tool=value)
 
             verify_status_code(tool_url)
-            print(tool_url)
             driver.get(tool_url)
             time.sleep(1)
 

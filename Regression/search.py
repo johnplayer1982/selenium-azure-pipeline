@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from importlib.machinery import SourceFileLoader
 import time
 
@@ -25,21 +26,38 @@ def runTest(baseUrl, driver):
         # Perform the search
         time.sleep(1.5)
         inpage_search = driver.find_element(By.CSS_SELECTOR, 'div.searchbox')
-        search_input = inpage_search.find_element(By.CSS_SELECTOR, 'section.cmp-search-box div.cmp-search-box__field input#aa-search-input')
+        assert inpage_search
+        print('- In page search box found')
+        search_input = inpage_search.find_element(By.CSS_SELECTOR, 'input.cmp-search-box__input.aa-input')
         assert search_input
+        print('- In page search input found')
+        driver.execute_script("arguments[0].click();", search_input)
+        print('- Input clicked')
         search_input.send_keys(searchTerm)
-        driver.find_element(By.CSS_SELECTOR, "div.searchbox div.cmp-search-box__field > button.cmp-search-box__find").click()
-        print("- Searching for {searchTerm}".format(searchTerm=searchTerm))
-    
+        search_input_value = search_input.get_attribute('value')
+        print('- {} in search field'.format(search_input_value))
+        inpage_search_btn = inpage_search.find_element(By.CSS_SELECTOR, "div.cmp-search-box__field > button.cmp-search-box__find")
+        assert inpage_search_btn
+        print('- Search button found')
+
+        inpage_search_btn.click()
+        print('- Search button clicked')
+        print("- Searching for {}".format(search_input_value))
+        time.sleep(2)
+
         # Confirm search has been performed using the URL
         expected_url = "{url}/{lang}/search-results.html?q={term}".format(url=baseUrl, lang=lang, term=searchURL)
+        current_url = driver.current_url
 
-        assert driver.current_url == expected_url
+        assert current_url == expected_url
         print("- Expect URL: {url}/{lang}/search-results.html?q={term}".format(url=baseUrl, lang=lang, term=searchURL))
         print("- Actual URL: {url}".format(url=driver.current_url))
 
         # Confirm the search term has been populated into the header search
-        assert driver.find_element(By.CSS_SELECTOR, "#aa-search-input--header-desktop").get_attribute('value') == searchTerm
+        search_input_desktop = driver.find_element(By.CSS_SELECTOR, "input#aa-search-input--header-desktop")
+        search_input_desktop_value = search_input_desktop.get_attribute('value')
+
+        assert searchTerm == search_input_desktop_value
         print("- Search term {term} has been populated into the header search input".format(term=searchTerm))
         
         # Broken in PROD!
@@ -79,23 +97,25 @@ def runTest(baseUrl, driver):
 
     searchterms = searchterms.get_search_terms()
 
-    for term in searchterms:
-        lang = "en"
-        driver.get(createURL(lang))
-        runSearchTest(term, lang)
+    # for term in searchterms:
+    #     lang = "en"
+    #     driver.get(createURL(lang))
+    #     runSearchTest(term, lang)
 
     # 4852 - Search suggestions not displaying on mobile search
+    resize.resizeMobile(driver)
     driver.get(baseUrl)
     print('\n4852 - Search suggestions not displaying on mobile search')
-    resize.resizeMobile(driver)
     print('- Resizing to mobile')
     header_elem = driver.find_element(By.CSS_SELECTOR, 'div.header')
     search_icon = header_elem.find_element(By.CSS_SELECTOR, 'button.cmp-header__search-icon')
     search_icon.click()
     print('- Clicked search icon in header')
     time.sleep(1)
-    search_panel = header_elem.find_element(By.CSS_SELECTOR, 'div.cmp-header__search-mobile')
+
+    search_panel = driver.find_element(By.CSS_SELECTOR, 'div.cmp-header__search-mobile')
     search_input = search_panel.find_element(By.CSS_SELECTOR, 'section.cmp-search-box div.cmp-search-box__field input#aa-search-input--header-mobile')
+    search_input.click()
     search_input.send_keys("housin")
     print('- Entered partial term into search field')
     time.sleep(2)

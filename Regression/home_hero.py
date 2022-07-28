@@ -70,9 +70,9 @@ def runTest(baseUrl, driver):
         
         # Click an option in the list
         if key == "/en":
-            driver.find_element_by_xpath("//p[normalize-space()='savings']").click()
+            driver.find_element(By.XPATH, "//p[normalize-space()='savings']").click()
         else:
-            driver.find_element_by_xpath("//p[normalize-space()='angladd']").click()
+            driver.find_element(By.XPATH, "//p[normalize-space()='angladd']").click()
         print("- Clicked an option in the auto suggest list")
         
         # Confirm the option is now populated in the input field
@@ -87,6 +87,7 @@ def runTest(baseUrl, driver):
         search_btn = search_container.find_element(By.CSS_SELECTOR, 'button.cmp-search-box__find')
         search_btn.click()
         print("- Search button clicked")
+        time.sleep(2)
 
         # Confirm the search results page (Based on the URL)
         expectedResultsUrl = "{baseUrl}{key}/search-results.html?q={searchTerm}".format(baseUrl=baseUrl, key=key, searchTerm=searchTerm)

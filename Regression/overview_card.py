@@ -38,8 +38,8 @@ def runTest(baseUrl, driver):
         overview_text_container = card.find_element(By.CSS_SELECTOR, 'div.cmp-overview-card__content-main-text')
         assert overview_text_container.value_of_css_property('padding') == "25px 24px 0px"
         assert overview_text_container.value_of_css_property('line-height') == "23px"
-        assert overview_text_container.value_of_css_property('color') == "rgba(0, 11, 59, 1)"
         assert overview_text_container.value_of_css_property('display') == "block"
+        assert "0, 11, 59" in overview_text_container.value_of_css_property('color')
         print(' + Text container styles OK')
 
         overview_title = card.find_element(By.CSS_SELECTOR, 'h2.cmp-overview-card__content-main-text-title')
@@ -48,8 +48,8 @@ def runTest(baseUrl, driver):
         assert overview_title.value_of_css_property('font-family') == "Roobert, sans-serif"
         assert overview_title.value_of_css_property('font-size') == "22px"
         assert overview_title.value_of_css_property('font-weight') == "700"
-        assert overview_title.value_of_css_property('color') == "rgba(200, 42, 135, 1)"
         assert overview_title.value_of_css_property('line-height') == "28px"
+        assert "200, 42, 135" in overview_title.value_of_css_property('color')
         print(' + Title styles OK')
 
         overview_text = card.find_element(By.CSS_SELECTOR, '.cmp-overview-card__content-main-text > p')
@@ -57,7 +57,7 @@ def runTest(baseUrl, driver):
         assert overview_text.value_of_css_property('font-weight') == "400"
         assert overview_text.value_of_css_property('font-size') == "16px"
         assert overview_text.value_of_css_property('line-height') == "23px"
-        assert overview_text.value_of_css_property('color') == "rgba(0, 11, 59, 1)"
+        assert "0, 11, 59" in overview_text.value_of_css_property('color')
         print(' + Text styles OK')
 
         overview_button_container = card.find_element(By.CSS_SELECTOR, 'div.cmp-overview-card__content-main-text-button')
@@ -74,12 +74,12 @@ def runTest(baseUrl, driver):
         print(' + Button link styles OK')
 
         overview_button_span = card.find_element(By.CSS_SELECTOR, 'span.cmp-overview-card__content-main-text-button-a-content')
-        assert overview_button_span.value_of_css_property('background-color') == "rgba(255, 255, 255, 1)"
-        assert overview_button_span.value_of_css_property('color') == "rgba(200, 42, 135, 1)"
         assert overview_button_span.value_of_css_property('display') == "flex"
         assert overview_button_span.value_of_css_property('border-radius') == "4px"
         assert overview_button_span.value_of_css_property('font-size') == "16px"
         assert overview_button_span.value_of_css_property('line-height') == "23px"
+        assert "255, 255, 255" in overview_button_span.value_of_css_property('background-color')
+        assert "200, 42, 135" in overview_button_span.value_of_css_property('color')
         print(' + Button span styles OK')
 
     # Mobile
