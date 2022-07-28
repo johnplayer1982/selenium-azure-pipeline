@@ -18,7 +18,7 @@ def confirm_accepted_cookies(driver):
     for cookie in all_cookies:
         for key, value in cookie.items():
             if isinstance(value, str):
-                if '"optionalCookies":{"analytics":"accepted","marketing":"accepted"}' in value:
+                if '{"analytics":"accepted","marketing":"accepted"}' in value:
                     accepted_cookies_found = True
                     print('- Accepted cookies found')
     assert accepted_cookies_found
@@ -65,7 +65,7 @@ def runTest(baseUrl, driver):
     resize.resizeDesktop(driver)
     confirm_cookies_on_load(driver)
 
-    time.sleep(1)
+    time.sleep(1.5)
     # Overlay
     overlay = driver.find_element(By.CSS_SELECTOR, 'div#ccc-overlay')
     overlay_opacity = overlay.value_of_css_property('opacity')
@@ -158,7 +158,7 @@ def runTest(baseUrl, driver):
     print('- Set preferences link styles OK')
 
     # Click set preferences
-    set_preferences_link.click()
+    driver.execute_script("arguments[0].click();", set_preferences_link)
     time.sleep(1)
 
     overlay = driver.find_element(By.CSS_SELECTOR, 'div#ccc-overlay')

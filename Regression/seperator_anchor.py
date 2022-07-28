@@ -38,16 +38,16 @@ def runTest(baseUrl, driver):
     print(' + Button styles OK')
 
     seperator_anchor_button_a = seperator_anchor_button.find_element(By.CSS_SELECTOR, 'a.cmp-separatoranchor__content-main-text-button-a')
-    assert seperator_anchor_button_a.value_of_css_property('color') == "rgba(174, 0, 96, 1)"
     assert seperator_anchor_button_a.value_of_css_property('border') == "10px solid rgb(255, 255, 255)"
+    assert "174, 0, 96" in seperator_anchor_button_a.value_of_css_property('color')
     print(' + Button a tag styles OK')
 
     seperator_anchor_button_span = seperator_anchor_button_a.find_element(By.CSS_SELECTOR, 'span.cmp-separatoranchor__content-main-text-button-a-content')
     assert seperator_anchor_button_span.value_of_css_property('padding') == "8.5px 12px"
-    assert seperator_anchor_button_span.value_of_css_property('background-color') == "rgba(255, 255, 255, 1)"
-    assert seperator_anchor_button_span.value_of_css_property('color') == "rgba(200, 42, 135, 1)"
     assert seperator_anchor_button_span.value_of_css_property('display') == "flex"
     assert seperator_anchor_button_span.value_of_css_property('box-shadow') == "rgba(0, 11, 59, 0.25) 0px 3px 0px 0px"
+    assert "255, 255, 255" in seperator_anchor_button_span.value_of_css_property('background-color')
+    assert "200, 42, 135" in seperator_anchor_button_span.value_of_css_property('color')
     print(' + Button span tag styles OK')
 
     seperator_anchor_button_a.click()

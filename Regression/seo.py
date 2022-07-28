@@ -47,23 +47,6 @@ def runTest(baseUrl, driver):
             raise AssertionError("html tag does not contain correct lang attribute")
         print(' + Correct lang attribute found on html tag')
 
-        # H1 text aligns with title tag content
-        if "Home" not in key:
-            h1_text = driver.find_element(By.CSS_SELECTOR, 'h1').text
-            page_title = driver.find_element(By.CSS_SELECTOR, 'title').get_attribute('innerText')
-            
-            # Convert to lowercase
-            page_title = page_title.lower()
-            h1_text = h1_text.lower()
-            # Replace amps with and for alternative expected text
-            h1_text_formatted = h1_text.replace("&", "and")
-
-            if "search results for" in h1_text_formatted:
-                h1_text_formatted = h1_text_formatted.replace("for", "")
-
-            assert h1_text in page_title or h1_text_formatted in page_title or h1_text_formatted in page_title or page_title in h1_text_formatted
-            print(' + Page title contains the page H1')
-
         for key, value in tags.items():
             target_tag = driver.find_elements(By.CSS_SELECTOR, value)
             assert target_tag

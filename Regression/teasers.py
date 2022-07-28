@@ -57,9 +57,9 @@ def runTest(baseUrl, driver):
             for teaser in threeColumnTeasers:
                 
                 if locale == "/en":
-                    teaserImage = teaser.find_element_by_css_selector(".cmp-blog-posts__item--three-column-image")
+                    teaserImage = teaser.find_element(By.CSS_SELECTOR, ".cmp-blog-posts__item--three-column-image")
                 else:
-                    teaserImage = teaser.find_element_by_css_selector(".cmp-teaser__link-image")
+                    teaserImage = teaser.find_element(By.CSS_SELECTOR, ".cmp-teaser__link-image")
 
                 threeColCount += 1
 

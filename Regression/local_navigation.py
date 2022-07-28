@@ -74,16 +74,16 @@ def runTest(baseUrl, driver):
         scrollDown(driver)
 
         # Confirm the local nav is not initially visible
-        assert not driver.find_element_by_css_selector(".cmp-local-navigation__sticky-banner").get_attribute("class") == ".cmp-local-navigation__sticky-banner.show-mobile-banner"
+        assert not driver.find_element(By.CSS_SELECTOR, ".cmp-local-navigation__sticky-banner").get_attribute("class") == ".cmp-local-navigation__sticky-banner.show-mobile-banner"
         print("- Sticky mobile local nav not visible on load")
         
         # Find sticky menu
-        mobileNavButton = driver.find_element_by_css_selector(".cmp-local-navigation__sticky-banner.show-mobile-banner")
+        mobileNavButton = driver.find_element(By.CSS_SELECTOR, ".cmp-local-navigation__sticky-banner.show-mobile-banner")
         mobileNavButton.click()
         print("- Found and clicked mobile local nav sticky button")
 
         # Confirm navigation is open
-        mobileNavOpen = driver.find_element_by_css_selector(".cmp-local-navigation.local-nav-open")
+        mobileNavOpen = driver.find_element(By.CSS_SELECTOR, ".cmp-local-navigation.local-nav-open")
         assert mobileNavOpen
         print("- Mobile sticky navigation open")
         
@@ -118,20 +118,20 @@ def runTest(baseUrl, driver):
         print('- Button has the aria-expanded "false" attribute')
         
         # Confirm the panel contents are no longer visible
-        mobileNavOpen = driver.find_element_by_css_selector(".cmp-local-navigation")
+        mobileNavOpen = driver.find_element(By.CSS_SELECTOR, ".cmp-local-navigation")
         assert not mobileNavOpen.get_attribute("class") == ".cmp-local-navigation.local-nav-open"
         print("- The mobile local navigation is closed")
 
         # Scroll to the bottom of the page
-        driver.find_element_by_tag_name("html").send_keys(Keys.END)
+        driver.find_element(By.TAG_NAME, "html").send_keys(Keys.END)
         print("- Scrolled to bottom of page")
-        assert not driver.find_element_by_css_selector(".cmp-local-navigation__sticky-banner").get_attribute("class") == ".cmp-local-navigation__sticky-banner.show-mobile-banner"
+        assert not driver.find_element(By.CSS_SELECTOR, ".cmp-local-navigation__sticky-banner").get_attribute("class") == ".cmp-local-navigation__sticky-banner.show-mobile-banner"
         print("- Navigation hidden")
         
         # Scroll to top to confirm the banner is hidden
-        driver.find_element_by_tag_name("html").send_keys(Keys.HOME)
+        driver.find_element(By.TAG_NAME, "html").send_keys(Keys.HOME)
         print("- Scrolled to top of page")
-        assert not driver.find_element_by_css_selector(".cmp-local-navigation__sticky-banner").get_attribute("class") == ".cmp-local-navigation__sticky-banner.show-mobile-banner"
+        assert not driver.find_element(By.CSS_SELECTOR, ".cmp-local-navigation__sticky-banner").get_attribute("class") == ".cmp-local-navigation__sticky-banner.show-mobile-banner"
         print("- Navigation hidden")
         
         # 3687 - Make sure the live chat button is not clickable when the localnav is open
@@ -140,7 +140,7 @@ def runTest(baseUrl, driver):
         print('- Resized to small mobile (375x667)')
         print('- Scrolling down to make sure livechat is not clickable when menu open')
         scrollDown(driver)
-        mobileNavButton = driver.find_element_by_css_selector(".cmp-local-navigation__sticky-banner.show-mobile-banner")
+        mobileNavButton = driver.find_element(By.CSS_SELECTOR, ".cmp-local-navigation__sticky-banner.show-mobile-banner")
         mobileNavButton.click()
         liveChatBtn = driver.find_element(By.CSS_SELECTOR, '.cmp-contact__trigger')
         try:

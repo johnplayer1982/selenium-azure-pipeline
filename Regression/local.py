@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 import os, platform
 
 import cookies
@@ -36,16 +37,26 @@ from selenium.webdriver.chrome.options import Options
 baseUrl = "https://test.moneyhelper.org.uk"
 
 if platform.system() == "Darwin":
-    driver = webdriver.Safari()
+    # driver = webdriver.Safari()
+    
+    # Chrome
+    CHROMEDRIVER_PATH = '../Webdrivers/chromedriver'
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+
+    # Headless Chrome
+    # driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=options)
 else:
     CHROME_VERSION_PC = os.getenv('CHROME_VERSION_PC')
-    DRIVER_BIN = "..\chromedriver_104.exe"
+    DRIVER_BIN = "..\Webdrivers\chromedriver_104.exe"
     options = Options()
     options.binary_location = r"C:\Program Files\Google\Chrome Beta\Application\chrome.exe"
     driver = webdriver.Chrome(chrome_options=options, executable_path=DRIVER_BIN)
 
 tests = {
     "Cookies" : cookies,
+    "Search" : search,
     "Breadcrumbs" : breadcrumbs,
     "Accordion Carousel" : accordion_carousel,
     "Article Template" : article_template,
@@ -64,7 +75,6 @@ tests = {
     "Local Navigation" : local_navigation,
     "Navigation" : navigation,
     "Overview Card" : overview_card,
-    "Search" : search,
     "Section Hero" : section_hero,
     "SEO" : seo,
     "Seperator Anchor" : seperator_anchor,

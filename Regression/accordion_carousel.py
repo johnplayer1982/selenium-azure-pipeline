@@ -134,6 +134,6 @@ def runTest(baseUrl, driver):
         assert "0, 128, 33" in icon.value_of_css_property('color')
         assert icon.value_of_css_property('font-family') == "money-helper-icons, sans-serif"
         print(' + Icon is green tick')
-        assert item_content.get_attribute('style') == "display: none;"
+        assert not item_content.is_displayed()
         print(' + Item content not visible')
         time.sleep(1)

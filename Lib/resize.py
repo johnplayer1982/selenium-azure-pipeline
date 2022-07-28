@@ -3,7 +3,7 @@ def resizeMobile(driver):
     print(' > Resized to mobile')
 
 def resizeTablet(driver):
-    driver.set_window_size(1007, 900)
+    driver.set_window_size(900, 900)
     print(' > Resized to tablet')
 
 def resizeDesktop(driver):

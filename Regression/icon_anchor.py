@@ -20,35 +20,35 @@ def runTest(baseUrl, driver):
 
     assert icon_anchor_link.value_of_css_property('margin') == "0px"
     assert icon_anchor_link.value_of_css_property('padding') == "12px 16px"
-    assert icon_anchor_link.value_of_css_property('color') == "rgba(174, 0, 96, 1)"
     assert icon_anchor_link.value_of_css_property('border') == "1px solid rgb(200, 42, 135)"
     assert icon_anchor_link.value_of_css_property('box-shadow') == "rgba(0, 11, 59, 0.25) 0px 3px 0px 0px"
     assert icon_anchor_link.value_of_css_property('display') == "flex"
+    assert "174, 0, 96" in icon_anchor_link.value_of_css_property('color')
     print(' + Icon anchor link styles ok')
 
     icon_anchor_link_icon = icon_anchor_container.find_element(By.CSS_SELECTOR, 'span.cmp-iconanchor-link-icon')
     assert icon_anchor_link_icon.get_attribute("aria-hidden") == "true"
     print(' + Icon anchor link icon has correct aria attribute: "aria-hidden"')
-    assert icon_anchor_link_icon.value_of_css_property('color') == "rgba(200, 42, 135, 1)"
     assert icon_anchor_link_icon.value_of_css_property('margin') == "0px 20px 0px 0px"
     assert icon_anchor_link_icon.value_of_css_property('padding') == "10px 0px"
     assert icon_anchor_link_icon.value_of_css_property('line-height') == "60px"
     assert icon_anchor_link_icon.value_of_css_property('font-size') == "75px"
+    assert "200, 42, 135" in icon_anchor_link_icon.value_of_css_property('color')
     print(' + Icon anchor link icon styles ok')
 
     icon_anchor_link_text = icon_anchor_container.find_element(By.CSS_SELECTOR, '.cmp-iconanchor-link-text-content')
     assert icon_anchor_link_text.value_of_css_property('font-size') == "22px"
     assert icon_anchor_link_text.value_of_css_property('font-weight') == "700"
     assert icon_anchor_link_text.value_of_css_property('line-height') == "28px"
-    assert icon_anchor_link_text.value_of_css_property('color') == "rgba(0, 11, 59, 1)"
+    assert "0, 11, 59" in icon_anchor_link_text.value_of_css_property('color')
     print(' + Icon anchor link text styles ok')
 
     icon_anchor_link_anchor = icon_anchor_container.find_element(By.CSS_SELECTOR, 'span.cmp-iconanchor-link-anchor')
     assert icon_anchor_link_anchor.get_attribute("aria-hidden") == "true"
-    assert icon_anchor_link_anchor.value_of_css_property('color') == "rgba(200, 42, 135, 1)"
     assert icon_anchor_link_anchor.value_of_css_property('margin') == "0px 0px 0px 20px"
     assert icon_anchor_link_anchor.value_of_css_property('font-family') == "money-helper-icons, sans-serif"
     assert icon_anchor_link_anchor.value_of_css_property('font-size') == "30px"
+    assert "200, 42, 135" in icon_anchor_link_anchor.value_of_css_property('color')
     print(' + Icon anchor icon styles ok')
 
     icon_anchor_link.click()

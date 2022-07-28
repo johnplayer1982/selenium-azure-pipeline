@@ -8,8 +8,6 @@ def runTest(baseUrl, driver):
     articlelist = SourceFileLoader('getarticlelist', '../Lib/article_list.py').load_module()
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
 
-    testArticle = "{baseUrl}/en/jp-test/how-to-choose-the-right-bank-account".format(baseUrl=baseUrl)
-    driver.get(testArticle)
     dismisscookie.dismissCookieBanner(driver)
     articlelist = articlelist.get_articles()
     for article in articlelist:
@@ -38,10 +36,11 @@ def runTest(baseUrl, driver):
             homeLinkText = "Home"
         else:
             homeLinkText = "Hafan"
-        breadcrumb_text = desktopBreadcrumbItems[0].find_element(By.CSS_SELECTOR, 'a.cmp-breadcrumb__list-item-link > span')
-        print('Breadcrumb text: {}'.format(breadcrumb_text.text))
+
+        breadcrumb_text = desktopBreadcrumbItems[0].find_element(By.CSS_SELECTOR, 'a.cmp-breadcrumb__list-item-link > span[itemprop="name"]').text
+        print('Breadcrumb text: {}'.format(breadcrumb_text))
         print('Expected: {}'.format(homeLinkText))
-        assert breadcrumb_text.text == homeLinkText
+        assert breadcrumb_text == homeLinkText
         print('- 1st link in breadcrumb correct "{homeLinkText}"'.format(homeLinkText=homeLinkText))
         
         # Confirm height of desktop breadcrumb

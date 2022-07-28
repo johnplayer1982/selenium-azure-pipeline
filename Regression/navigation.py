@@ -43,7 +43,8 @@ def runTest(baseUrl, driver):
             driver.find_element(By.CSS_SELECTOR, ".cmp-header__submenu")
             print("- Confirmed menu is visible")
             # Close the menu item using the close button
-            driver.find_element(By.CSS_SELECTOR, "li[class='cmp-header__menu-list-item focus'] div[class='cmp-header__submenu-close']").click()
+            submenu_close = driver.find_element(By.CSS_SELECTOR, "li[class='cmp-header__menu-list-item focus'] div[class='cmp-header__submenu-close']")
+            submenu_close.click()
             print("- Closed menu item: {item.text}".format(item=item))
 
         # ====== TABLET ====== # 
@@ -51,6 +52,7 @@ def runTest(baseUrl, driver):
         # Resize the window to tablet
         resize.resizeTablet(driver)
         print("- Window resized to tablet breakpoint")
+        time.sleep(1)
 
         # Confirm menu button present
         mobileMenuBtn = driver.find_element(By.CSS_SELECTOR, ".cmp-header__menu-toggle-open")
@@ -67,17 +69,17 @@ def runTest(baseUrl, driver):
 
         # Go through the menu items and open/close
         for item in mobileMenuItems:
-            item.click()
+            driver.execute_script("arguments[0].click();", item)
             print("- Opened menu item {item}".format(item=item.text))
             time.sleep(0.3)
-            item.click()
+            driver.execute_script("arguments[0].click();", item)
             print("- Closed menu item {item}".format(item=item.text))
 
             # Verify tools menu has updated style from 3261
             toolsPanel = driver.find_element(By.CSS_SELECTOR, '.cmp-header__submenu--mobile-tools-wrapper')
             # Check the background colout
             toolsPanelBg = toolsPanel.value_of_css_property("background-color")
-            assert toolsPanelBg == "rgba(255, 255, 255, 1)"
+            assert "255, 255, 255" in toolsPanelBg
             print("- Tools panel in menu has white background as expected")
 
             # Check the border
@@ -112,11 +114,11 @@ def runTest(baseUrl, driver):
         # Reopen the menu
         time.sleep(2)
         mobileMenuBtn = driver.find_element(By.CSS_SELECTOR, ".cmp-header__menu-toggle-open")
-        mobileMenuBtn.click()
+        driver.execute_script("arguments[0].click();", mobileMenuBtn)
         time.sleep(2)
         # Close the menu by clicking on the overlay
         mobileOverlay = driver.find_element(By.CSS_SELECTOR, ".cmp-header__overlay--small-screen")
-        mobileOverlay.click()
+        driver.execute_script("arguments[0].click();", mobileOverlay)
         # Confirm menu is closed
         # Give the menu a second to finish its animated transition
         time.sleep(1)
@@ -154,9 +156,10 @@ def runTest(baseUrl, driver):
     # 3709 - "menu" word on mobile and tablet welsh header should change to "bwydlen"
 
     resize.resizeMobile(driver)
+    time.sleep(1)
     driver.get("{}/cy".format(url))
     expectedCYMenu = "bwydlen"
-    menuText = driver.find_element(By.CSS_SELECTOR, 'span.cmp-header__menu-toggle-open-title')
-    assert menuText.text == expectedCYMenu
+    menuText = driver.find_element(By.CSS_SELECTOR, 'span.cmp-header__menu-toggle-open-title').text
+    print(menuText)
+    assert expectedCYMenu in menuText
     print('- Welsh menu button text correct: {}'.format(expectedCYMenu))
-
