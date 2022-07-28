@@ -12,11 +12,13 @@ def runTest(baseUrl, driver):
 
     # Start test in desktop view
     resize.resizeDesktop(driver)
+    # Visit and dismiss cookie banner
+    driver.get(siteUrl)
+    dismisscookie.dismissCookieBanner(driver)
 
     def runSearchTest(term, lang):
 
         driver.get(siteUrl)
-        dismisscookie.dismissCookieBanner(driver)
         searchTerm = term
         print("\n- Running Search term test for '{term}'".format(term=searchTerm))
 
@@ -97,10 +99,10 @@ def runTest(baseUrl, driver):
 
     searchterms = searchterms.get_search_terms()
 
-    # for term in searchterms:
-    #     lang = "en"
-    #     driver.get(createURL(lang))
-    #     runSearchTest(term, lang)
+    for term in searchterms:
+        lang = "en"
+        driver.get(createURL(lang))
+        runSearchTest(term, lang)
 
     # 4852 - Search suggestions not displaying on mobile search
     resize.resizeMobile(driver)
