@@ -41,11 +41,11 @@ def get_driver():
         desired_capabilities=caps)
     return driver
 
-def run_tests(tests):
+def run_tests(tests, browser):
     try:
         for key, value in tests.items():
             print('Testing {}'.format(key))
-            value.runTest(baseUrl, driver)
+            value.runTest(baseUrl, driver, browser)
             print('End of {} test\n'.format(key))
         test_result = 'pass'
     except AssertionError as e:
@@ -118,7 +118,7 @@ tests = {
     "Text" : text,
 }
 
-test_result = run_tests(tests)
+test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
     test_result
@@ -145,7 +145,7 @@ tests = {
     "Tools" : tools
 }
 
-test_result = run_tests(tests)
+test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
     test_result
@@ -172,7 +172,7 @@ tests = {
     "Search" : search
 }
 
-test_result = run_tests(tests)
+test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
     test_result
@@ -205,7 +205,7 @@ tests = {
     "Article Template" : article_template,
 }
 
-test_result = run_tests(tests)
+test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
     test_result
@@ -232,7 +232,7 @@ tests = {
     "SEO" : seo
 }
 
-test_result = run_tests(tests)
+test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
     test_result
@@ -259,7 +259,7 @@ tests = {
     "MISC" : misc
 }
 
-test_result = run_tests(tests)
+test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
     test_result

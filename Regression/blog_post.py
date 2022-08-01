@@ -2,8 +2,9 @@ from selenium.webdriver.common.by import By
 from importlib.machinery import SourceFileLoader
 import requests
 
-def runTest(baseUrl, driver):
+def runTest(baseUrl, driver, browser):
 
+    print(' - Testing on {}'.format(browser))
     dismisscookie = SourceFileLoader('getcookiefile', '../Lib/dismisscookie.py').load_module()
     blogpostlist = SourceFileLoader('getblogpostlist', '../Lib/blog_post_list.py').load_module()
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()

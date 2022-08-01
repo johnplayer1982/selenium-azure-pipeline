@@ -3,8 +3,9 @@ from selenium.common.exceptions import NoSuchElementException
 from importlib.machinery import SourceFileLoader
 import time
 
-def runTest(baseUrl, driver):
+def runTest(baseUrl, driver, browser):
 
+    print(' - Testing on {}'.format(browser))
     subcategorypages = SourceFileLoader('getsubcategorypages', '../Lib/subcategory_pages.py').load_module()
 
     urls = subcategorypages.get_subcategory_pages()

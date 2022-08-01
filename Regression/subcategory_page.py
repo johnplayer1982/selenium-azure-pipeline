@@ -1,8 +1,9 @@
 from selenium.webdriver.common.by import By
 from importlib.machinery import SourceFileLoader
 
-def runTest(baseUrl, driver):
+def runTest(baseUrl, driver, browser):
 
+    print(' - Testing on {}'.format(browser))
     subcategorypages = SourceFileLoader('getsubcategorypages', '../Lib/subcategory_pages.py').load_module()
     urls = subcategorypages.get_subcategory_pages()
 

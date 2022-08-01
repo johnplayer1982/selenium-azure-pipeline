@@ -3,8 +3,9 @@ from selenium.webdriver.common.keys import Keys
 from importlib.machinery import SourceFileLoader
 import time
 
-def runTest(baseUrl, driver):
+def runTest(baseUrl, driver, browser):
 
+    print(' - Testing on {}'.format(browser))
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
     searchterms = SourceFileLoader('getsearchterms', '../Lib/search_terms.py').load_module()
     dismisscookie = SourceFileLoader('getcookiefile', '../Lib/dismisscookie.py').load_module()

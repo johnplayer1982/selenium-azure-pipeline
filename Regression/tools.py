@@ -10,8 +10,9 @@ def verify_status_code(tool_url):
     else:
         raise AssertionError(" - Tool landing page not reachable")
 
-def runTest(baseUrl, driver):
+def runTest(baseUrl, driver, browser):
     
+    print(' - Testing on {}'.format(browser))
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
     dismisscookie = SourceFileLoader('getcookiefile', '../Lib/dismisscookie.py').load_module()
 
