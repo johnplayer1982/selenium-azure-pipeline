@@ -118,7 +118,9 @@ tests = {
     "Text" : text,
 }
 
-test_result = run_tests(tests, browser=caps.get("browser"))
+print(caps.get('browserName'))
+
+test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
     test_result
@@ -145,7 +147,7 @@ tests = {
     "Tools" : tools
 }
 
-test_result = run_tests(tests, browser=caps.get("browser"))
+test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
     test_result
@@ -172,7 +174,7 @@ tests = {
     "Search" : search
 }
 
-test_result = run_tests(tests, browser=caps.get("browser"))
+test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
     test_result
@@ -205,7 +207,7 @@ tests = {
     "Article Template" : article_template,
 }
 
-test_result = run_tests(tests, browser=caps.get("browser"))
+test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
     test_result
@@ -232,7 +234,7 @@ tests = {
     "SEO" : seo
 }
 
-test_result = run_tests(tests, browser=caps.get("browser"))
+test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
     test_result
@@ -259,7 +261,7 @@ tests = {
     "MISC" : misc
 }
 
-test_result = run_tests(tests, browser=caps.get("browser"))
+test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
     test_result
