@@ -118,8 +118,6 @@ tests = {
     "Text" : text,
 }
 
-print(caps.get('browserName'))
-
 test_result = run_tests(tests, browser=caps.get("browserName"))
 clean_up(
     driver,
