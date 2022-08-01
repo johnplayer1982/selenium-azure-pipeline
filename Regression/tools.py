@@ -70,14 +70,17 @@ def runTest(baseUrl, driver, browser):
             driver.get(tool_url)
             time.sleep(1)
 
-            # Find the button
-            start_tool_btn = driver.find_element(By.CSS_SELECTOR, 'a.cmp-button__primary')
-            if start_tool_btn:
-                print(' - Primary button found')
-                start_tool_btn.click()
-                print(' - Primary button clicked')
+            if not key == "Debt Advice Locator":
+                # Find the button
+                start_tool_btn = driver.find_element(By.CSS_SELECTOR, 'a.cmp-button__primary')
+                if start_tool_btn:
+                    print(' - Primary button found')
+                    start_tool_btn.click()
+                    print(' - Primary button clicked')
+                else:
+                    raise AssertionError(" - Primary button not found on {}".format(key))
             else:
-                raise AssertionError(" - Primary button not found on {}".format(key))
+                print(' - Tool is DAL, no start button expected')
 
     print('\n> All iframed tools reachable')
 
