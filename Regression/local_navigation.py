@@ -9,8 +9,9 @@ def scrollDown(driver):
     time.sleep(2)
     print("- Scrolling down 50%")
 
-def runTest(baseUrl, driver):
+def runTest(baseUrl, driver, browser):
 
+    print(' - Testing on {}'.format(browser))
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
     articlelist = SourceFileLoader('getarticlelist', '../Lib/article_list.py').load_module()
 

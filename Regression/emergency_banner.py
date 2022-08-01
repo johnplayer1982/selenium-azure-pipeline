@@ -2,8 +2,9 @@ from selenium.webdriver.common.by import By
 from importlib.machinery import SourceFileLoader
 import time
 
-def runTest(baseUrl, driver):
+def runTest(baseUrl, driver, browser):
 
+    print(' - Testing on {}'.format(browser))
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
     articlelist = SourceFileLoader('getarticlelist', '../Lib/article_list.py').load_module()
 

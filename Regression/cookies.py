@@ -57,8 +57,9 @@ def confirm_marketing_only(driver):
     assert marketing_only_passed
     print('- Correct cookies set for marketing only option')
 
-def runTest(baseUrl, driver):
+def runTest(baseUrl, driver, browser):
 
+    print(' - Testing on {}'.format(browser))
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
 
     driver.get(baseUrl)

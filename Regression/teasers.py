@@ -8,8 +8,9 @@ def getImageSize(selector):
     height = image.size["height"]
     return [width, height]
 
-def runTest(baseUrl, driver):
+def runTest(baseUrl, driver, browser):
 
+    print(' - Testing on {}'.format(browser))
     resize = SourceFileLoader('getresize', '../Lib/resize.py').load_module()
     teaser_warnings = set()
 

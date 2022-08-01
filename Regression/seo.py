@@ -2,8 +2,9 @@ from selenium.webdriver.common.by import By
 from importlib.machinery import SourceFileLoader
 import time
 
-def runTest(baseUrl, driver):
+def runTest(baseUrl, driver, browser):
     
+    print(' - Testing on {}'.format(browser))
     eachpagetype = SourceFileLoader('geteachpagetype', '../Lib/each_page_type.py').load_module()
     dismisscookie = SourceFileLoader('getcookiefile', '../Lib/dismisscookie.py').load_module()
 
